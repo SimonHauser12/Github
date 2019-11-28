@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class TestMain2 {
+public class TestMain {
 
 
 	public static void main(String[] args) throws IOException{
@@ -29,6 +29,10 @@ public class TestMain2 {
 			nfe.printStackTrace();
 			System.out.println("Das ist keine ganze Zahl!");
 		}
+		finally
+		{
+			System.out.println("Ich werde immer ausgeführt!");
+		}
 	}
 	
 	public static void ArrayIndexOutOfBoundsException() throws IOException{
@@ -55,6 +59,10 @@ public class TestMain2 {
 			nase.printStackTrace();
 			System.out.println(nase.getMessage());
 		}
+		finally
+		{
+			System.out.println("Ich werde immer ausgeführt!");
+		}
 	}
 	
 	public static void FileNotFoundException() throws IOException{
@@ -65,6 +73,9 @@ public class TestMain2 {
 	        fnfe.printStackTrace();
 	        System.out.println("Datei kann vom System nicht gefunden werden!");
 	    }
+		finally
+		{
+			System.out.println("Ich werde immer ausgeführt!");
+		}
 	}
 }
-
