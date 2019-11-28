@@ -29,6 +29,9 @@ public class TestMain {
 			nfe.printStackTrace();
 			System.out.println("Das ist keine ganze Zahl!");
 		}
+		catch(Exception e) {
+			System.out.println("Unerwarteter Fehler!!");
+		}
 		finally
 		{
 			System.out.println("Ich werde immer ausgeführt!");
@@ -59,6 +62,9 @@ public class TestMain {
 			nase.printStackTrace();
 			System.out.println(nase.getMessage());
 		}
+		catch(Exception e) {
+			System.out.println("Unerwarteter Fehler!!");
+		}
 		finally
 		{
 			System.out.println("Ich werde immer ausgeführt!");
@@ -73,6 +79,9 @@ public class TestMain {
 	        fnfe.printStackTrace();
 	        System.out.println("Datei kann vom System nicht gefunden werden!");
 	    }
+		catch(Exception e) {
+			System.out.println("Unerwarteter Fehler!!");
+		}
 		finally
 		{
 			System.out.println("Ich werde immer ausgeführt!");
