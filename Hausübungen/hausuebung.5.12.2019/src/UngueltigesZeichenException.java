@@ -1,4 +1,5 @@
 
+@SuppressWarnings("serial")
 public class UngueltigesZeichenException extends Exception{
 
 	public UngueltigesZeichenException() {

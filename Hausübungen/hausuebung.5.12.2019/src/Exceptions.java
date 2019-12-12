@@ -34,6 +34,9 @@ public class Exceptions {
 		}
 		catch(UngueltigesZeichenException uze) {
 			throw uze;
-		}	
+		}
+		finally {
+			k.close();
+		}
 	}
 }

@@ -1,4 +1,5 @@
 
+@SuppressWarnings("serial")
 public class AnzahlNichtEingehaltenException extends Exception{
 
 	public AnzahlNichtEingehaltenException() {
