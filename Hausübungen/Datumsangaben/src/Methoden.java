@@ -1,96 +1,96 @@
 import java.time.*;
-import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class Methoden {
-
+	
+	ArrayList<LocalDate> date=new ArrayList<LocalDate>();
+	ArrayList<String> date_USA=new ArrayList<String>();
+	ArrayList<LocalDate> dateOfOneYear=new ArrayList<LocalDate>();
+	ArrayList<String> dateOfOneYear_USA=new ArrayList<String>();
 	Scanner s=new Scanner(System.in);
 	DayOfWeek day;
 	int year;
+	int counterDay_M;
+	int ausgabe;
+	String formatted="";
 	
 	public Methoden(DayOfWeek day, int year) {
 		this.day=day;
 		this.year=year;
 	}
 	
-	public void counterDaysOfYear() {
-		int counter=0;
-		int counterDay=0;
-		LocalDate days=LocalDate.of(year, 1, 1);
-		do {
-			if(days.getDayOfWeek().equals(day)) {
-				counter++;
-			}else {
-				days=days.plusDays(1);
-			}
-		}while(counter==0);
-		counter=0;
-		LocalDate nextYear=days.plusYears(1);
-		do {
-			if(days.getYear()==nextYear.getYear()) {
-				counter++;
-			}else {
-				days=days.plusDays(7);
-				counterDay++;
-			}
-		}while(counter==0);
-		System.out.println("Es gibt "+counterDay+" "+day+" im Jahr "+year); 
-	}
-	
 	public void counterDays(int time) {
 		int counter=0;
-		int counterDay=0;
-		int ausgabe;
-		String da="";
-		String mo="";
+		counterDay_M=0;
+		ausgabe=format();
 		LocalDate days=LocalDate.of(time, 1, 1);
+		LocalDate lastDay=days;
 		LocalDate today=LocalDate.now();
+		String lastformatted="";
+		String todayformatted="";
 		do {
-			if(days.getDayOfWeek().equals(day)) {
-				counter++;
-			}else {
-				days=days.plusDays(1);
+			if(ausgabe==0) {
+				DateTimeFormatter formatter=DateTimeFormatter.ofPattern("MM-dd-yyyy");
+				formatted=formatter.format(days);
+				lastformatted=formatter.format(lastDay);
+				todayformatted=formatter.format(today);
 			}
-		}while(counter==0);
-		counter=0;		
-		do {
 			if(days.getYear()==today.getYear()) {
 				if(days.getDayOfYear()==today.getDayOfYear()) {
 					counter++;
 				}else {
+					if(days.getDayOfWeek()==day) {
+						counterDay_M++;
+						date.add(days);
+						date_USA.add(formatted);
+						lastDay=days;
+					}
 					days=days.plusDays(1);
 				}
 			}else {
-				days=days.plusDays(7);
-				counterDay++;
+				if(days.getDayOfWeek()==day) {
+					counterDay_M++;
+					date.add(days);
+					date_USA.add(formatted);
+				}
+				days=days.plusDays(1);
 			}
 		}while(counter==0);
-		System.out.println("Es gibt "+counterDay+" "+day+" von "+time+" bis "+ today); 
-		System.out.println();
-		if (days.getMonthValue()<10&&days.getDayOfMonth()<10) {
-			da="0"+days.getDayOfMonth();
-			mo="0"+days.getMonthValue();
-		}else {
-			if(days.getDayOfMonth()<10) {
-				da="0"+days.getDayOfMonth();
+			if(ausgabe==0) {
+				System.out.println("Es gibt "+counterDay_M+" "+day+" von "+time+" bis "+ todayformatted); 
+				System.out.print("Letzter "+day+": "+ lastformatted);
 			}else {
-				if (days.getMonthValue()<10) {
-					mo="0"+days.getMonthValue();
-				}else {
-					da=days.getDayOfMonth()+"";
-					mo=days.getMonthValue()+"";
+				System.out.println("Es gibt "+counterDay_M+" "+day+" von "+time+" bis "+ today); 
+				System.out.print("Letzter "+day+": "+ lastDay);
+			}
+			System.out.println();
+	}
+	
+	public void counterDaysOfYear() {
+		int counter=0;
+		int counterDay=0;
+		LocalDate days=LocalDate.of(year, 1, 1);
+		LocalDate nextYear=days.plusYears(1);
+		do {
+			if(ausgabe==0) {
+				DateTimeFormatter formatter=DateTimeFormatter.ofPattern("MM-dd-yyyy");
+				formatted=formatter.format(days);
+			}
+			if(days.getYear()==nextYear.getYear()) {
+				counter++;
+			}else {
+				if(days.getDayOfWeek()==day) {
+					counterDay++;
+					dateOfOneYear.add(days);
+					dateOfOneYear_USA.add(formatted);
 				}
+				days=days.plusDays(1);
 			}
-		}
-		System.out.println("Datumsangabe: amerikanisch(0) oder europäisch(1)");
-		ausgabe=s.nextInt();
-		System.out.print("Letzter "+day+": ");
-		if(ausgabe==0) {
-			System.out.println(mo+"-"+da+"-"+days.getYear());
-		}else {
-			if (ausgabe==1) {
-				System.out.println(days.getYear() + "-" + mo + "-" + da);
-			}
-		}
+		}while(counter==0);
+		System.out.println();
+		System.out.println("Es gibt "+counterDay+" "+day+" im Jahr "+year); 
+		System.out.println();
 	}
 	
 	public void daysBetweenDays() {
@@ -106,6 +106,38 @@ public class Methoden {
 		}
 		
 		System.out.println("Geburtstag in: "+timeBetweenBirthday.getMonths()+" Monaten und "+timeBetweenBirthday.getDays()+" Tagen");
+	}
+	
+	public int format() {
+		int ausgabe;
+		System.out.println("Datumsangabe: amerikanisch(0) oder europäisch(1)");
+		ausgabe=s.nextInt();
+		return ausgabe;
+	}
+	
+	public void randomDate() {
+		int wahl=s.nextInt();
+		System.out.println("Längerer Zeitraum(1900) oder nur ein Jahr(1)");
+		int k=s.nextInt();
+		if (k==1900) {
+			if (ausgabe == 0) {
+				System.out.println(date_USA.get(wahl));
+			} else {
+				if (ausgabe == 1) {
+					System.out.println(date.get(wahl));
+				}
+			} 
+		}else {
+			if(k==1) {
+				if (ausgabe == 0) {
+					System.out.println(dateOfOneYear_USA.get(wahl));
+				} else {
+					if (ausgabe == 1) {
+						System.out.println(dateOfOneYear.get(wahl));
+					}
+				} 
+			}
+		}
 	}
 	
 }
