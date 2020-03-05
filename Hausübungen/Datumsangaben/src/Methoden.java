@@ -6,8 +6,6 @@ public class Methoden {
 	
 	ArrayList<LocalDate> date=new ArrayList<LocalDate>();
 	ArrayList<String> date_USA=new ArrayList<String>();
-	ArrayList<LocalDate> dateOfOneYear=new ArrayList<LocalDate>();
-	ArrayList<String> dateOfOneYear_USA=new ArrayList<String>();
 	Scanner s=new Scanner(System.in);
 	DayOfWeek day;
 	int year;
@@ -73,17 +71,11 @@ public class Methoden {
 		LocalDate days=LocalDate.of(year, 1, 1);
 		LocalDate nextYear=days.plusYears(1);
 		do {
-			if(ausgabe==0) {
-				DateTimeFormatter formatter=DateTimeFormatter.ofPattern("MM-dd-yyyy");
-				formatted=formatter.format(days);
-			}
 			if(days.getYear()==nextYear.getYear()) {
 				counter++;
 			}else {
 				if(days.getDayOfWeek()==day) {
 					counterDay++;
-					dateOfOneYear.add(days);
-					dateOfOneYear_USA.add(formatted);
 				}
 				days=days.plusDays(1);
 			}
@@ -117,27 +109,13 @@ public class Methoden {
 	
 	public void randomDate() {
 		int wahl=s.nextInt();
-		System.out.println("Längerer Zeitraum(1900) oder nur ein Jahr(1)");
-		int k=s.nextInt();
-		if (k==1900) {
-			if (ausgabe == 0) {
-				System.out.println(date_USA.get(wahl));
-			} else {
-				if (ausgabe == 1) {
-					System.out.println(date.get(wahl));
-				}
-			} 
-		}else {
-			if(k==1) {
-				if (ausgabe == 0) {
-					System.out.println(dateOfOneYear_USA.get(wahl));
-				} else {
-					if (ausgabe == 1) {
-						System.out.println(dateOfOneYear.get(wahl));
-					}
-				} 
+		if (ausgabe == 0) {
+			System.out.println(date_USA.get(wahl));
+		} else {
+			if (ausgabe == 1) {
+				System.out.println(date.get(wahl));
 			}
-		}
+		} 
 	}
 	
 }
