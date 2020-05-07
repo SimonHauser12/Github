@@ -67,7 +67,7 @@ public class PokerspielMain {
 			wert=durch.nextInt();
 			Assertion_Test k=new Assertion_Test();
 			if(wert==1) {
-				System.out.println("Rückgabewert TwoPair:"+k.twoPair_Assertion(4, 2, 4));
+				System.out.println("Rückgabewert TwoPair:"+k.twoPair_Assertion(4, 2, 4, 2));
 			}else {
 				if(wert==2) {
 					System.out.println("Rückgabewert ThreeofaKind:"+k.threeofaKind_Assertion(4, 4, 4, 5));
