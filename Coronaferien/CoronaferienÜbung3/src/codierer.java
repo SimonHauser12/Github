@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class codierer extends NumToText_TextToNum{
 
 	private int[] code;
-	String message;
+	private String message;
 	
 	public void menu() {
 		Scanner r=new Scanner(System.in);
@@ -12,16 +12,23 @@ public class codierer extends NumToText_TextToNum{
 		System.out.print("Nachricht eingeben: ");
 		message = r.nextLine();
 		message=message.toLowerCase();
+		message=message.replaceAll("ä", "ae");
+		message=message.replaceAll("ö", "oe");
+		message=message.replaceAll("ü", "ue");
 		int o=message.length();
 		for (int j = 0; j <o; j++) {
 			for(int i=0; i<message.length(); i++) {
 				if(message.charAt(i)!='a'&&message.charAt(i)!='b'&&message.charAt(i)!='c'&&message.charAt(i)!='d'&&message.charAt(i)!='e'&&message.charAt(i)!='f'&&
-						message.charAt(i)!='g'&&message.charAt(i)!='h'&&message.charAt(i)!='i'&&message.charAt(i)!='j') {
-					message=delete(i);
+						message.charAt(i)!='g'&&message.charAt(i)!='h'&&message.charAt(i)!='i'&&message.charAt(i)!='j'&&message.charAt(i)!='k'&&message.charAt(i)!='l'&&
+						message.charAt(i)!='m'&&message.charAt(i)!='n'&&message.charAt(i)!='o'&&message.charAt(i)!='p'&&message.charAt(i)!='q'&&message.charAt(i)!='r'&&
+						message.charAt(i)!='s'&&message.charAt(i)!='t'&&message.charAt(i)!='u'&&message.charAt(i)!='v'&&message.charAt(i)!='w'&&message.charAt(i)!='x'&&
+						message.charAt(i)!='y'&&message.charAt(i)!='z')
+				{
+						message=delete(i);
 				}
 			}
 		}
-		//System.out.println(message);
+		System.out.println(message);
 		generateCode();
 		
 		PrintWriter w=null;
@@ -67,7 +74,7 @@ public class codierer extends NumToText_TextToNum{
 		for(int i=0; i<message.length; i++) {
 			if(a==4)a=0;
 			test[i]=message[i]+code[a];
-			if(test[i]>9) test[i]=test[i]-10;
+			if(test[i]>25) test[i]=test[i]-26;
 			a++;
 		}
 		return test;

@@ -56,7 +56,7 @@ public class decodierer extends NumToText_TextToNum{
 			for (int i = 0; i < nachv.length; i++) {
 				if (a==4) a = 0;
 				test[i] = nachv[i] - code[a];
-				if(test[i]<0)test[i]=test[i]+10;
+				if(test[i]<0)test[i]=test[i]+26;
 				a++;
 			} 
 			for(int i=0; i<test.length; i++) {
