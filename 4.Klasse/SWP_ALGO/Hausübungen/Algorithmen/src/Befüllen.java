@@ -23,7 +23,6 @@ public abstract class Befüllen {
 					zahlen[i]=zwischenspeicher;
 				}
 			}
-			System.out.println(zahlen[i]);
 		}
 		
 		System.out.println("Gesuchte Zahl eingeben: ");
@@ -55,7 +54,8 @@ public abstract class Befüllen {
 		this.gesucht = gesucht;
 	}
 
-	public abstract void sucheB();
-	public abstract void sucheF();
+	public abstract int sucheB();
+	public abstract int sucheF();
+	public abstract void suche();
 	
 }
