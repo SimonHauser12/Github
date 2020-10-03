@@ -5,30 +5,37 @@ public class Binärsuche extends Befüllen{
 	int counter=1;
 	int max=getZahlen().length-1;
 	int min=0;
-	int halbierer=(int)(getZahlen().length/2);
 	boolean gefunden=false;
 	
 	public void suche() {
+		long benötigt=0;
+		long benötigt2=0;
 		long zeit=System.nanoTime();
 		switch(sucheB()) {
 		case 1: 
-			long benötigt = System.nanoTime() - zeit;
+			benötigt = System.nanoTime() - zeit;
 			System.out.println("Zahl gefunden: "+ benötigt+ " Nanosekunden");
 			break;
 		case -1: 
 			System.out.println("Zahl nicht gefunden!");
 			break;
+		default:
+			break;
 		}
-		long zeit2=System.nanoTime();
+		zeit=System.nanoTime();
 		switch(sucheF()) {
 		case 1: 
-			long benötigt = System.nanoTime() - zeit2;
-			System.out.println("Zahl gefunden: "+ benötigt+ " Nanosekunden");
+			benötigt2 = System.nanoTime() - zeit;
+			System.out.println("Zahl gefunden: "+ benötigt2+ " Nanosekunden");
 			break;
 		case -1: 
 			System.out.println("Zahl nicht gefunden!");
 			break;
+		default:
+			break;
 		}
+		System.out.println(benötigt+ "  "+benötigt2);
+		System.out.println("Binärsuche ist um den Faktor "+benötigt2/benötigt+" schneller!");
 	}
 	
 	public int sucheB() {
