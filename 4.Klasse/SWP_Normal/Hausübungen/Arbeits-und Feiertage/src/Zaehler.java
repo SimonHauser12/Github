@@ -5,11 +5,11 @@ import org.json.JSONException;
 
 public class Zaehler extends Feiertage{
 	
-	int mo=0;
-	int di=0;
-	int mi=0;
-	int don=0;
-	int fr=0;
+	static int mo=0;
+	static int di=0;
+	static int mi=0;
+	static int don=0;
+	static int fr=0;
 
 	public Zaehler(int jahre) {
 		super(jahre);
