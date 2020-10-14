@@ -13,14 +13,13 @@ import org.json.JSONException;
 
 public class TestMain extends Application{
 	
-	static Zaehler z=new Zaehler(2069);
+	static Zaehler z=new Zaehler(2022);
 	
 	 public static void main(String[] args) throws MalformedURLException, JSONException, IOException {
 
 		z.ausgabe();
+		
 		launch(args);
-		
-		
 	}
 	 
 	@Override
@@ -32,8 +31,8 @@ public class TestMain extends Application{
 		
 		 final BarChart<Number, String> barChart=new BarChart<Number, String>(xAchse, yAchse);
 		 barChart.setTitle("Freie Wochentage");
-		 xAchse.setLabel("Wochentage");
-		 yAchse.setLabel("Tage");
+		 xAchse.setLabel("Tage");
+		 yAchse.setLabel("Wochentage");
 		
 		 XYChart.Series series= new XYChart.Series();
 		 series.getData().add(new XYChart.Data(z.mo, mo));

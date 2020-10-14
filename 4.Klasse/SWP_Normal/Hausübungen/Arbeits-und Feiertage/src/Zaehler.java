@@ -26,7 +26,21 @@ public class Zaehler extends Feiertage{
 				case FRIDAY: fr++; break;
 				default: break;
 			}
+			for(int j=0; j<schulferien.size(); j++) {
+				if((feiertage.get(i).getYear()==schulferien.get(j).getYear())&&(feiertage.get(i).getDayOfYear()==schulferien.get(j).getDayOfYear())) {
+					switch(feiertage.get(i).getDayOfWeek()) {
+						case MONDAY: mo--; break;
+						case TUESDAY: di--; break;
+						case WEDNESDAY: mi--; break;
+						case THURSDAY: don--; break;
+						case FRIDAY: fr--; break;
+						default: break;
+					}
+				}
+			}
 		}
+		
+		
 	}
 	
 	public void ausgabe() throws MalformedURLException, JSONException, IOException {

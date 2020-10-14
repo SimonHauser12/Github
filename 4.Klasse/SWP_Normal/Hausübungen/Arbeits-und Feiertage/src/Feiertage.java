@@ -10,7 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class Feiertage {
+public class Feiertage extends Schulferien{
 
 	ArrayList<LocalDate> feiertage=new ArrayList<LocalDate>();
 	int jahrAnfang=2020;
@@ -25,11 +25,16 @@ public class Feiertage {
 	}
 	
 	public void Datum() throws JSONException, MalformedURLException, IOException {
-		
 		while(jahrAnfang<=jahrEnde) {
 			String URL = "https://feiertage-api.de/api/?jahr="+jahrAnfang+"&nur_land=BY";
 			JSONObject json = new JSONObject(IOUtils.toString(new URL(URL), Charset.forName("UTF-8")));
-			
+			//Charset wie Antwort verarbeitet wird
+			//Utils wandelt zu String um und wandelt in JSONObjekt um
+		
+			if(jahrAnfang<2023) {
+				tage(jahrAnfang);
+			}
+		
 			feiertage.add(getDatum(json, "Neujahrstag"));
 			feiertage.add(getDatum(json, "Heilige Drei Könige"));
 			feiertage.add(getDatum(json, "Ostermontag"));
@@ -50,7 +55,7 @@ public class Feiertage {
 	public LocalDate getDatum(JSONObject json, String key) throws JSONException {
 		JSONObject bestaetigt = (JSONObject) json.get(key);
 		String tag = bestaetigt.getString("datum");
-		LocalDate datum=LocalDate.parse(tag);
-		return datum;
+		return LocalDate.parse(tag);
 	}
+	
 }
