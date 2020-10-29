@@ -13,14 +13,15 @@ import org.json.JSONObject;
 public class Feiertage extends Schulferien{
 
 	ArrayList<LocalDate> feiertage=new ArrayList<LocalDate>();
-	int jahrAnfang=2020;
+	int jahrAnfang;
 	int jahrEnde;
 	
-	public Feiertage(int jahr) {
-		if(jahr<2020) {
-			System.out.println("Keine Negativen Jahre!");
+	public Feiertage(int jahr_A, int jahr_E) {
+		if((jahr_A<0)||(jahr_A>2020)||(jahr_E<0)) {
+			System.out.println("Falsche Jahresangaben");
 		}else {
-			this.jahrEnde=jahr;
+			this.jahrEnde=jahr_E;
+			this.jahrAnfang=jahr_A;
 		}
 	}
 	
@@ -31,7 +32,7 @@ public class Feiertage extends Schulferien{
 			//Charset wie Antwort verarbeitet wird
 			//Utils wandelt zu String um und wandelt in JSONObjekt um
 		
-			if(jahrAnfang<2023) {
+			if((jahrAnfang<2023)&&(jahrAnfang>2016)) {
 				tage(jahrAnfang);
 			}
 		

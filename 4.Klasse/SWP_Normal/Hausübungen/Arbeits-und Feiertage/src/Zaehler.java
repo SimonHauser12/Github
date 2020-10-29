@@ -11,8 +11,8 @@ public class Zaehler extends Feiertage{
 	static int don=0;
 	static int fr=0;
 
-	public Zaehler(int jahre) {
-		super(jahre);
+	public Zaehler(int jahr_A, int jahr_E) {
+		super(jahr_A, jahr_E);
 	}
 	
 	public void woche() throws MalformedURLException, JSONException, IOException {

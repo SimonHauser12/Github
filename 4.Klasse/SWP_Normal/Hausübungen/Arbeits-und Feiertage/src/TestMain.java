@@ -13,13 +13,14 @@ import org.json.JSONException;
 
 public class TestMain extends Application{
 	
-	static Zaehler z=new Zaehler(2022);
+	static DBVerbindung db=new DBVerbindung(2019, 2022);
 	
 	 public static void main(String[] args) throws MalformedURLException, JSONException, IOException {
 
-		z.ausgabe();
-		
+		db.ausgabe();
 		launch(args);
+		
+		db.verbindungZuSQL("localhost:3306", "FreieTage", "root", "sh30112002");
 	}
 	 
 	@Override
@@ -35,11 +36,11 @@ public class TestMain extends Application{
 		 yAchse.setLabel("Wochentage");
 		
 		 XYChart.Series series= new XYChart.Series();
-		 series.getData().add(new XYChart.Data(z.mo, mo));
-		 series.getData().add(new XYChart.Data(z.di, di));
-		 series.getData().add(new XYChart.Data(z.mi, mi));
-		 series.getData().add(new XYChart.Data(z.don, don));
-		 series.getData().add(new XYChart.Data(z.fr, fr));
+		 series.getData().add(new XYChart.Data(db.mo, mo));
+		 series.getData().add(new XYChart.Data(db.di, di));
+		 series.getData().add(new XYChart.Data(db.mi, mi));
+		 series.getData().add(new XYChart.Data(db.don, don));
+		 series.getData().add(new XYChart.Data(db.fr, fr));
 		
 		
 		 Scene scene=new Scene(barChart, 640, 480);
