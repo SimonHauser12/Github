@@ -7,11 +7,11 @@ public class TestMain {
 	}
 	
 	public static void funktionsaufruf(int zahl) {
-		System.out.println("Fibonacci Iterativ: "+ interativ(zahl));
+		System.out.println("Fibonacci Iterativ: "+ iterativ(zahl));
 		System.out.println("Fibonacci Rekursiv: "+ fibo_rekursiv(zahl));
 	}
 	
-	public static int interativ(int anzahl) {
+	public static int iterativ(int anzahl) {
 		anzahl-=2;
 		int ergebnis=1;
 		int vor1=1;
@@ -26,7 +26,7 @@ public class TestMain {
 	}
 	
 	public static int fibo_rekursiv(int anzahl) {
-		if (anzahl==1||anzahl==2) {
+		if (anzahl<=2) {
 			return 1;
 		}else {
 			return fibo_rekursiv(anzahl-1)+fibo_rekursiv(anzahl-2);
