@@ -3,12 +3,12 @@ public class TestMain {
 
 	public static void main(String[] args) {
 		
-		funktionsaufruf(10);
+		funktionsaufruf(5);
 	}
 	
 	public static void funktionsaufruf(int zahl) {
 		System.out.println("Fibonacci Iterativ: "+ fibo_iterativ(zahl));
-		System.out.println("Fibonacci Rekursiv: "+ fibo_endrekursiv(1, 1, 2, zahl));
+		System.out.println("Fibonacci Rekursiv: "+ fibo_endrekursiv(0, 1, zahl-1));
 	}
 
 	public static int fibo_iterativ(int anzahl) {
@@ -25,11 +25,13 @@ public class TestMain {
 		return ergebnis;
 	}
 	
-	public static int fibo_endrekursiv(int x0, int x1, int x2, int anzahl) {
-		if (x2>=anzahl) {
-			return x1;
-		}else {
-			return fibo_endrekursiv(x1, x0+x1, x2+1, anzahl);
+	public static int fibo_endrekursiv(int x0, int x1, int anzahl) {
+		if (anzahl<0) {
+			return 0;
 		}
+		if(anzahl==0) {
+			return x1;
+		}
+		return fibo_endrekursiv(x1, x0+x1, anzahl-1);
 	  }
 }
