@@ -17,7 +17,7 @@ public class Feiertage extends Schulferien{
 	int jahrEnde;
 	
 	public Feiertage(int jahr_A, int jahr_E) {
-		if((jahr_A<0)||(jahr_A>2020)||(jahr_E<0)||(jahr_A>jahr_E)) {
+		if((jahr_A<0)||(jahr_E<0)||(jahr_A>jahr_E)) {
 			System.out.println("Falsche Jahresangaben");
 		}else {
 			this.jahrEnde=jahr_E;
