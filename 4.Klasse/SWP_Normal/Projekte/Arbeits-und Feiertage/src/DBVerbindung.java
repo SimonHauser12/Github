@@ -6,13 +6,8 @@ import java.util.Scanner;
 
 public class DBVerbindung extends Zaehler{
 	
-	int jahr_A;
-	int jahr_E;
-	
 	public DBVerbindung(int jahr_A, int jahr_E) {
 		super(jahr_A, jahr_E);
-		this.jahr_A=jahr_A;
-		this.jahr_E=jahr_E;
 	}
 
 	public void verbindungZuSQL(String host, String database, String user, String passwort) {

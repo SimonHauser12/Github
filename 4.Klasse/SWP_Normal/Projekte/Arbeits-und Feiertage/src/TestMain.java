@@ -20,7 +20,9 @@ import org.json.JSONException;
 
 public class TestMain extends Application{
 	
-	static DBVerbindung db=new DBVerbindung(2019, 2022);
+	static int startJahr=2019;
+	static int endJahr=2022;
+	static DBVerbindung db=new DBVerbindung(startJahr, endJahr);
 	
 	 public static void main(String[] args) throws MalformedURLException, JSONException, IOException {
 
@@ -62,9 +64,9 @@ public class TestMain extends Application{
 		          } 
 		        }
 		      });
-		     
 		      series.getData().add(data);
 		 }
+		 series.setName(startJahr+"-"+endJahr);
 		 
 		 
 		 barChart.getData().addAll(series);
