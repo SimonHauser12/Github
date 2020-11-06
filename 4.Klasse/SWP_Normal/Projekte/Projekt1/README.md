@@ -1,7 +1,7 @@
 # Arbeits- und Feiertage
 ***
 ### Inhaltsangabe
-1. [Beschreibung des Projekts](#beschreibung der projekts)
+1. [Beschreibung des Projekts](#beschreibung des projekts)
 2. [Installationen](#installationen)
 3. [Ausführung](#ausführung)
 4. [Screenshot](#screenshot)
