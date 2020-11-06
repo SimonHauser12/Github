@@ -49,4 +49,4 @@ des Benutzers, wieder ausgelesen und erneut in der Console angezeigt.
 
 ### Screenshot
 ***
-![JavaFX-Ausgabe]{Arbeits-und Feiertage/JavaFX_Projekt_Rubner.PNG}
+![JavaFX-Ausgabe]{JavaFX_Projekt_Rubner.PNG}
