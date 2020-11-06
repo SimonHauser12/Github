@@ -27,12 +27,12 @@ Damit das Projekt ausführbar ist, müssen folgende jar-Dateien eingebunden werd
     
 Außerdem müssen auch die folgenden Ferien-API's im selber Ordner wie das Projekt abgespeichert werden,
 da ansonsten der Code nicht funktioniert:
-    * 2017.json
-    * 2018.json 
-    * 2019.json
-    * 2020.json
-    * 2021.json
-    * 2022.json
+* 2017.json
+* 2018.json 
+* 2019.json
+* 2020.json
+* 2021.json
+* 2022.json
 
 ### Ausführung
 ***
@@ -49,4 +49,4 @@ des Benutzers, wieder ausgelesen und erneut in der Console angezeigt.
 
 ### Screenshot
 ***
-![JavaFX-Ausgabe]{D:\SimonHTL\Programmieren\JavaFX_Projekt_Rubner.PNG}
+![JavaFX-Ausgabe]{D:/SimonHTL/Programmieren/JavaFX_Projekt_Rubner.PNG}
