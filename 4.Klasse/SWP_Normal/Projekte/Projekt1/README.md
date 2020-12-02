@@ -8,7 +8,8 @@
 
 ### Beschreibung des Projekts
 ***
-Prgammiersprache: Java
+Progammiersprache: Java
+
 Das Programm ermittelt nach der Eingabe von Start- und Endjahr, an welchem Wochentag (Montag-Freitag) die meisten freien Tage in der angegebenen Zeitspanne fallen (Österreich). 
 Jene freien Tage, welche allerdings durch Schulferien verursacht werden, werden nicht gewertet.
 Nachdem die jeweiligen Werte ermittelt wurden, wird durch JavaFX ein Säulendiagramm generiert, welches die zuvor ermitteltetn Werte im angegebenen Zeitraum veranschaulicht.
