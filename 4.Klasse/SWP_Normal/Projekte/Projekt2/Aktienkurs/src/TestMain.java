@@ -1,17 +1,16 @@
-import java.io.IOException;
-import java.net.MalformedURLException;
+import javafx.application.Application;
 
-import org.json.JSONException;
+public abstract class TestMain extends JavaFX{
 
-public abstract class TestMain {
-
-	static Aktien a=new Aktien("AAPL", 30);;
+	static Aktien a=new Aktien(typ, anzahlTage, host, database, user, passwort);
 	
-	public static void main(String[] args) throws MalformedURLException, JSONException, IOException {
+	public static void main(String[] args) throws Exception {
 
 		a.verbindungDB();
 		a.closePreis();
+		
+		Application.launch(JavaFX.class, args);
+		
 		a.DB_SELECT();
-
 	}
 }
