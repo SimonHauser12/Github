@@ -1,3 +1,4 @@
+package API_Aktienkurs;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.time.LocalDate;
@@ -30,7 +31,7 @@ public class Durchschnitt{
 			zaehler++;
 		} while (zaehler < durchschnitt);
 		
-		return summe/durchschnitt;
+		return summe/200;
 	}
 	
 	public int durchschnittBerechnen(JSONObject json, String key) throws JSONException {
