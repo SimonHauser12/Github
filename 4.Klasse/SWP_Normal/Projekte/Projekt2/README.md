@@ -29,20 +29,28 @@ Damit das Projekt ausführbar ist, müssen folgende jar-Dateien eingebunden werd
 ### Ausführung
 ***
 Bevor das Programm ausgeführt werden kann, muss das Firmenkürzel angegeben werden. Anschließend muss man angeben, ob eine neue Datenbank erstellt werden soll.
+
 Ist dies der Fall, wird eine Verbindung zum SQL-Server hergestellt und eine neue Datenbank, inklusive der benötigten Tabellen, erstellt. Danach werden die Aktienwerte 
 und der 200er Durchschnitt ermittelt und sofort in die Datenbank übertragen, jeweils in eine eigene Tabelle.
+
 Wird die Anfrage einer neuen Datenbank verneint, wird ebenfalls eine Verbindung zum SQL-Server hergestellt, allerdings ohne eine neue Datenbank zu erzeugen. Die anschließende 
 Ermittlung sowie Übertragung der Werte ist identisch. Es wurde in diesem Projekt eine MySQL-Datenbank verwendet. Die Datenbank wurde zur Gänze im Projekt erstellt. 
 Damit das Programm allerdings funktioniert, müssen 
+
 **localhost, Datenbankname, Benutzer und Passwort**
+
 geändert werden.
 Im Anschluss werden, wie zuvor erwähnt, alle ermittelten Werte im angegebenen Zeiraum durch JavaFX in einem Liniendiagramm veranschlaulicht. Dabei veranschlaulicht die rot
 hinterlegte Fläche einen Aktienverlust und die grün hinterlegte Fläche einen Aktiengewinn. 
+
 Dies wird anhand des 200er Durchschnitts berechnet:
+
 Ist der Tagesendwert der Aktie größer als der 200er Durchschnitt   -->  Aktiengewinn
 Ist der Tagesendwert der Aktie kleiner als der 200er Durchschnitt  -->  Aktienverlust
+
 Am Ende werden die Werte aus der Datenbank gelesen und in der Console angezeigt.
 
 ### Screenshot
 ***
+JavaFX-Ausgabe:
 {https://github.com/SimonHauser12/Github/tree/master/4.Klasse/SWP_Normal/Projekte/Projekt2/Aktienkurs/JavaFX_Rubner.PNG?raw=true}
