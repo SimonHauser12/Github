@@ -56,17 +56,14 @@ public class Aktien extends Durchschnitt{
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://"+host+"/"+database+"?user="+user+"&password="+passwort+"&serverTimezone=UTC");
 			Statement stat=con.createStatement();
-			System.out.println("Datenbank erstellen?(j/n)");
+			System.out.println("neue Datenbank erstellen?(j/n)");
 			if(s.next().equals("j")) {
 				stat.execute("DROP DATABASE Aktien");
 				stat.execute("CREATE DATABASE IF NOT EXISTS Aktien");
 			}
-			System.out.println("DB-Tabelle erstellen?(j/n)");
-			if(s.next().equals("j")) {
-				stat.execute("use Aktien");
-				stat.execute("create table Aktie_"+type+"(Zeitpunkt varchar(25), TagesEndPreis double, Primary Key(Zeitpunkt))");
-				stat.execute("create table Aktie_"+type+"_200erDurchschnitt(Zeitpunkt varchar(25), Durchschnitt double, Primary Key(Zeitpunkt))");
-			}
+			stat.execute("use Aktien");
+			stat.execute("create table if not exists Aktie_"+type+"(Zeitpunkt varchar(25), TagesEndPreis double, Primary Key(Zeitpunkt))");
+			stat.execute("create table if not exists Aktie_"+type+"_200erDurchschnitt(Zeitpunkt varchar(25), Durchschnitt double, Primary Key(Zeitpunkt))");
 			con.close();
 			s.close();
 		}catch(Exception ex){

@@ -7,7 +7,7 @@ public abstract class TestMain{
 	
 	static String host="localhost:3306", database="Aktien", user="root", passwort="sh30112002";
 	static String typ;
-	static int anzahlTage;
+	static int anzahlTage=280;
 	
 	public static void main(String[] args) throws Exception {
 		angaben();
@@ -25,7 +25,5 @@ public abstract class TestMain{
 		Scanner a=new Scanner(System.in);
 		System.out.println("Firma angeben: ");
 		typ=a.nextLine();
-		System.out.println("Anzahl der Tage angeben: ");
-		anzahlTage=a.nextInt();
 	}
 }
