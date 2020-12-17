@@ -52,4 +52,5 @@ Am Ende werden die Werte aus der Datenbank gelesen und in der Console angezeigt.
 
 ### Screenshot
 ***
-[JavaFX-Ausgabe](https://github.com/SimonHauser12/Github/tree/master/4.Klasse/SWP_Normal/Projekte/Projekt2/Aktienkurs/JavaFX_Rubner.PNG?raw=true)
+[JavaFX-Ausgabe (TSLA)](https://github.com/SimonHauser12/Github/tree/master/4.Klasse/SWP_Normal/Projekte/Projekt2/Aktienkurs/JavaFX_Rubner_TSLA.PNG?raw=true)
+[JavaFX-Ausgabe (AAPL)](https://github.com/SimonHauser12/Github/tree/master/4.Klasse/SWP_Normal/Projekte/Projekt2/Aktienkurs/JavaFX_Rubner_AAPL.PNG?raw=true)
