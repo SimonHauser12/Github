@@ -97,16 +97,22 @@ public class Aktien extends Durchschnitt{
 			Connection con = DriverManager.getConnection("jdbc:mysql://"+host+"/"+database+"?user="+user+"&password="+passwort+"&serverTimezone=UTC");
 			Statement stat=con.createStatement();
 			ResultSet reSe=stat.executeQuery("select * from Aktie_"+type);
+			System.out.println();
+			System.out.println("TagesEndPreis:");
+			System.out.println(" Zeitpunkt | TagesEndPreis");
 			while(reSe.next()) {	
 				String zeitpunkt=reSe.getString("Zeitpunkt");
 				String wert=reSe.getString("TagesEndPreis");
-				System.out.println("Zeitpunkt: "+zeitpunkt+"  TagesEndPreis: "+wert);
+				System.out.println(zeitpunkt+" | "+wert);
 			}
 			reSe=stat.executeQuery("select * from Aktie_"+type+"_200erDurchschnitt");
+			System.out.println();
+			System.out.println("200erDurchschnitt:");
+			System.out.println(" Zeitpunkt | Durchschnitt");
 			while(reSe.next()) {	
 				String zeitpunkt=reSe.getString("Zeitpunkt");
 				String wert=reSe.getString("Durchschnitt");
-				System.out.println("Zeitpunkt: "+zeitpunkt+"  Durchschnitt: "+wert);
+				System.out.println(zeitpunkt+" | "+wert);
 			}
 			con.close();
 		}catch(Exception ex){
