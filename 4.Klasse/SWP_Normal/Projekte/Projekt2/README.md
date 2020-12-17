@@ -45,11 +45,11 @@ hinterlegte Fläche einen Aktienverlust und die grün hinterlegte Fläche einen 
 
 Dies wird anhand des 200er Durchschnitts berechnet:
 
-Ist der Tagesendwert der Aktie größer als der 200er Durchschnitt   -->  Aktiengewinn                                                                                     Ist der Tagesendwert der Aktie kleiner als der 200er Durchschnitt  -->  Aktienverlust
+* Ist der Tagesendwert der Aktie größer als der 200er Durchschnitt   -->  Aktiengewinn
+* Ist der Tagesendwert der Aktie kleiner als der 200er Durchschnitt  -->  Aktienverlust
                                                                                     
 Am Ende werden die Werte aus der Datenbank gelesen und in der Console angezeigt.
 
 ### Screenshot
 ***
-JavaFX-Ausgabe:
-{https://github.com/SimonHauser12/Github/tree/master/4.Klasse/SWP_Normal/Projekte/Projekt2/Aktienkurs/JavaFX_Rubner.PNG?raw=true}
+[JavaFX-Ausgabe](https://github.com/SimonHauser12/Github/tree/master/4.Klasse/SWP_Normal/Projekte/Projekt2/Aktienkurs/JavaFX_Rubner.PNG?raw=true)
