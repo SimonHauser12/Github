@@ -24,6 +24,27 @@ public class Insertionsort {
 		ausgabeAufsteigend();
 	}
 	
+	public static void ausgabeAufsteigend() {
+		System.out.println("Datenstruktur aufsteigend:");
+		System.out.println("Zeit Insertionssort: "+ insertionSort_Zeit+" Nanosekunden");
+		System.out.println("Zeit Bubblesort: "+ bubbleSort_Zeit+" Nanosekunden");
+		System.out.println();
+	}
+	
+	public static void ausgabeAbsteigend() {
+		System.out.println("Datenstruktur absteigend:");
+		System.out.println("Zeit Insertionssort: "+ insertionSort_Zeit+" Nanosekunden");
+		System.out.println("Zeit Bubblesort: "+ bubbleSort_Zeit+" Nanosekunden");
+		System.out.println();
+	}
+
+	public static void ausgabeZufaellig() {
+		System.out.println("Datenstruktur zuf‰llig:");
+		System.out.println("Zeit Insertionssort: "+ insertionSort_Zeit+" Nanosekunden");
+		System.out.println("Zeit Bubblesort: "+ bubbleSort_Zeit+" Nanosekunden");
+		System.out.println();
+	}
+	
 	public static void zufaellig() {
 		int[] zufall=new int[groeﬂe];
 		int laenge=zufall.length-1;
@@ -90,26 +111,5 @@ public class Insertionsort {
 			}
 		}
 		bubbleSort_Zeit=System.nanoTime()-start;
-	}
-	
-	public static void ausgabeAufsteigend() {
-		System.out.println("Datenstruktur aufsteigend:");
-		System.out.println("Zeit Insertionssort: "+ insertionSort_Zeit+" Nanosekunden");
-		System.out.println("Zeit Bubblesort: "+ bubbleSort_Zeit+" Nanosekunden");
-		System.out.println();
-	}
-	
-	public static void ausgabeAbsteigend() {
-		System.out.println("Datenstruktur absteigend:");
-		System.out.println("Zeit Insertionssort: "+ insertionSort_Zeit+" Nanosekunden");
-		System.out.println("Zeit Bubblesort: "+ bubbleSort_Zeit+" Nanosekunden");
-		System.out.println();
-	}
-
-	public static void ausgabeZufaellig() {
-		System.out.println("Datenstruktur zuf‰llig:");
-		System.out.println("Zeit Insertionssort: "+ insertionSort_Zeit+" Nanosekunden");
-		System.out.println("Zeit Bubblesort: "+ bubbleSort_Zeit+" Nanosekunden");
-		System.out.println();
 	}
 }
