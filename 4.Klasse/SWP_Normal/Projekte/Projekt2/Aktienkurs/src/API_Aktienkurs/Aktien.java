@@ -14,14 +14,17 @@ import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Aktien extends Durchschnitt{
+public class Aktien{
 
 	String host, database, user, passwort;
+	String type;
 	int anzahl;
+	int tage;
 	static int ID=1;
 
 	public Aktien(String s, int t, String h, String d, String u, String p) {
-		super(s, t);
+		this.type=s;
+		this.tage=t;
 		this.anzahl=t;
 		this.host=h;
 		this.database=d;
