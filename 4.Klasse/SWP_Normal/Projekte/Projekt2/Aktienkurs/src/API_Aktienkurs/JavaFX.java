@@ -42,17 +42,19 @@ public class JavaFX extends Application {
 		 ArrayList<Double> durchschnitt=new ArrayList<Double>();
 		 ArrayList<String> datum=new ArrayList<String>();
 		 try {
+			 	int zaehler=TestMain.anzahlTage-200;
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://"+TestMain.host+"/"+TestMain.database+"?user="+TestMain.user+"&password="+TestMain.passwort+"&serverTimezone=UTC");
 				Statement stat=con.createStatement();
-				ResultSet reSe=stat.executeQuery("select * from Aktie_"+TestMain.typ);
+				ResultSet reSe=stat.executeQuery("select * from Aktie_"+TestMain.typ+" where id<="+zaehler+" order by ID desc");
 				while(reSe.next()) {
 					series_aktie.getData().add(new XYChart.Data(reSe.getString("Zeitpunkt"), Double.parseDouble(reSe.getString("TagesEndPreis"))));
 					aktie.add(Double.parseDouble(reSe.getString("TagesEndPreis")));
 					datum.add(reSe.getString("Zeitpunkt"));
+					zaehler++;
 				}
-				
-				reSe=stat.executeQuery("select * from Aktie_"+TestMain.typ+"_200erDurchschnitt");
+
+				reSe=stat.executeQuery("select a.Zeitpunkt, b.Durchschnitt from Aktie_"+TestMain.typ+"_200erDurchschnitt b inner join Aktie_"+TestMain.typ+" a on a.ID=b.ID order by b.ID desc");
 				while(reSe.next()) {	
 					series_durchschnitt.getData().add(new XYChart.Data(reSe.getString("Zeitpunkt"), Double.parseDouble(reSe.getString("Durchschnitt"))));
 					durchschnitt.add(Double.parseDouble(reSe.getString("Durchschnitt")));
