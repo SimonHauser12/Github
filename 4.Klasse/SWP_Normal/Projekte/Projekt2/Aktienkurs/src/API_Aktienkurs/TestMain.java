@@ -7,7 +7,7 @@ public abstract class TestMain{
 	
 	static String host="localhost:3306", database="Aktien", user="root", passwort="sh30112002";
 	static String typ;
-	static int anzahlTage=1000;
+	static int anzahlTage=800;
 	
 	public static void main(String[] args) throws Exception {
 		angaben();

@@ -1,4 +1,4 @@
-.default-color0.chart-area-symbol { -fx-background-color: #FF0000, #FF0000;}
+.default-color0.chart-area-symbol { -fx-background-color: #FF0000, #00FF00;}
 .default-color1.chart-area-symbol { -fx-background-color: #000000, #000000;}
 .default-color2.chart-area-symbol { -fx-background-color: #00FF00, #00FF00;}
 .default-color3.chart-area-symbol { -fx-background-color: #FF0000, #FF0000;}
@@ -13,3 +13,4 @@
 .default-color2.chart-series-area-fill { -fx-fill: #00FF0090;}
 .default-color3.chart-series-area-fill { -fx-fill: #FF000090;}
 
+/*FF0000, #f8f8f8*/
