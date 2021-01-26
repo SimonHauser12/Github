@@ -48,9 +48,8 @@ Dies wird anhand des 200er Durchschnitts berechnet:
 * Ist der Tagesendwert der Aktie größer als der 200er Durchschnitt   -->  Aktiengewinn
 * Ist der Tagesendwert der Aktie kleiner als der 200er Durchschnitt  -->  Aktienverlust
                                                                                     
-Am Ende werden die Werte aus der Datenbank gelesen und in der Console angezeigt.
+Am Ende können die Werte aus der Datenbank gelesen und in der Console angezeigt werden.
 
 ### Screenshot
 ***
-* [JavaFX-Ausgabe (TSLA)](https://github.com/SimonHauser12/Github/tree/master/4.Klasse/SWP_Normal/Projekte/Projekt2/Aktienkurs/JavaFX_Rubner_TSLA.PNG?raw=true)
 * [JavaFX-Ausgabe (AAPL)](https://github.com/SimonHauser12/Github/tree/master/4.Klasse/SWP_Normal/Projekte/Projekt2/Aktienkurs/JavaFX_Rubner_AAPL.PNG?raw=true)
