@@ -10,7 +10,7 @@
 ***
 Progammiersprache: Java
 
-Das Programm ermittelt nach der Eingabe des Firmenkürzels die jeweiligen Tagesendwerte und den 200er Durchschnitt der Firmenaktien für die letzten 280 Tage. 
+Das Programm ermittelt nach der Eingabe des Firmenkürzels die jeweiligen Tagesendwerte und den 200er Durchschnitt der Firmenaktien für die letzten 800 Tage. 
 Die zuvor ermittelten Werte sowie die Zeitspanne werden anschließend in eine SQL-Datenbank geschrieben, welche wiederum vom selben Programm ausgelesen werden kann.
 Zu guter Letzt wird durch JavaFX ein Liniendiagramm generiert, welches die zuvor ermitteltetn Werte im angegebenen Zeitraum veranschaulicht.
 Dabei wird anhand des 200er Durchschnittes ermittelt, ob die Aktie einen Gewinn oder einen Verlust verzeichnet. (Grün=Gewinn , Rot=Verlust) 
