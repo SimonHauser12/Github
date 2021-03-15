@@ -20,4 +20,4 @@ Vergleich- sowie der Vertauschoperationen für die Sortierung von Zufallszahlen 
 
 ### Screenshot
 ***
-* [Ausgabe des Programms](https://github.com/SimonHauser12/Github/tree/master/4.Klasse/SWP_Normal/Projekte/Projekt2/Aktienkurs/Sortieralgorithmen.PNG?raw=true)
+* [Ausgabe des Programms](https://github.com/SimonHauser12/Github/tree/master/4.Klasse/SWP_ALGO/Haus%C3%BCbungen/Aufgabe8/Sortieralgorithmen/Sortieralgorithmen.PNG?raw=true)
