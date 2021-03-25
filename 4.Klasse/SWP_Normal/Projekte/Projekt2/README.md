@@ -32,15 +32,19 @@ Bevor das Programm ausgeführt werden kann, muss in der externen Textdatei minde
 Anschließend werden aus der API alle Close- sowie Splitwerte in der angegebenen Menge ausgelesen und in einer Datenbank abgespeichert. 
 Es wurde in diesem Projekt eine MySQL-Datenbank verwendet. Die Datenbank wurde zur Gänze im Projekt erstellt. 
 Damit das Programm allerdings funktioniert und Werte in die Datenbank geschrieben werden können, müssen 
-    * [**localhost, Datenbankname, Benutzer und Passwort**]
+    
+    **localhost, Datenbankname, Benutzer und Passwort**
+
 geändert werden.
 Daraufhin werden diese Werte wieder aus der Datenbank ausgelesen und mittels Splitcorrection (wenn der Splitwert größer als 1 ist, müssen alle nachherigen Werte durch diesen Wert dividiert werden)
 werden die Aktiensplits korrigiert. Die korrigierten Werte werden dann wieder in einer Datenbanktabelle abgespeichert. Aus diesen korrigierten Werten wird danach der 200er-Durchschnitt 
 berechnet (die letzten 200 Werte addieren und durch 200 dividieren, für alle Werte) und ebenfalls in einer Datenbank abgespeichert.
 Zu guter Letzt werden die korrigierten Werte sowie die 200er-Werte ausgelesen und durch Java-FX mittels Liniendiagramm dargestellt.
 Dargestellt werden also der 200er Durchschnitt mittels schwarzer Linie und die Closewerte, wobei der Hintergrund der Closewerte variable anhand des 200er-Durchschnitts gesteuert wird.
-    * [Wenn der Closewert größer als der 200er-Wert ist, dann ist der Hintergrund grün gefärbt (Aktie bringt Gewinn)]
-    * [Wenn der Closewert kleiner als der 200er-Wert ist, dann ist der Hintergrund rot gefärbt (Aktie bringt Verlust)]
+    
+    * Wenn der Closewert größer als der 200er-Wert ist, dann ist der Hintergrund grün gefärbt (Aktie bringt Gewinn)
+    * Wenn der Closewert kleiner als der 200er-Wert ist, dann ist der Hintergrund rot gefärbt (Aktie bringt Verlust)
+
 Ganz am Ende werden die erzeugen Charts als .PNG auf dem PC abgespeichert.   
 
 ### Screenshot
