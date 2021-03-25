@@ -32,7 +32,7 @@ Bevor das Programm ausgeführt werden kann, muss in der externen Textdatei minde
 Anschließend werden aus der API alle Close- sowie Splitwerte in der angegebenen Menge ausgelesen und in einer Datenbank abgespeichert. 
 Es wurde in diesem Projekt eine MySQL-Datenbank verwendet. Die Datenbank wurde zur Gänze im Projekt erstellt. 
 Damit das Programm allerdings funktioniert und Werte in die Datenbank geschrieben werden können, müssen 
-**localhost, Datenbankname, Benutzer und Passwort**
+    * **localhost, Datenbankname, Benutzer und Passwort**
 geändert werden.
 Daraufhin werden diese Werte wieder aus der Datenbank ausgelesen und mittels Splitcorrection (wenn der Splitwert größer als 1 ist, müssen alle nachherigen Werte durch diesen Wert dividiert werden)
 werden die Aktiensplits korrigiert. Die korrigierten Werte werden dann wieder in einer Datenbanktabelle abgespeichert. Aus diesen korrigierten Werten wird danach der 200er-Durchschnitt 
@@ -47,4 +47,4 @@ Ganz am Ende werden die erzeugen Charts als .PNG auf dem PC abgespeichert.
 
 ### Screenshot
 ***
-[JavaFX-Ausgabe]{https://github.com/SimonHauser12/Github/blob/master/4.Klasse/SWP_Normal/Projekte/Projekt2/Aktienkurs/TSLA_2021-03-25.png?raw=true}
+[JavaFX-Ausgabe](https://github.com/SimonHauser12/Github/blob/master/4.Klasse/SWP_Normal/Projekte/Projekt2/Aktienkurs/TSLA_2021-03-25.png?raw=true)
