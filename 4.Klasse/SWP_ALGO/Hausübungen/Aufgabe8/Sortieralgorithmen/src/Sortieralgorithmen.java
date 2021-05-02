@@ -14,13 +14,16 @@ public class Sortieralgorithmen {
 	private static ArrayList<Integer> vergleichO_SS=new ArrayList<Integer>();
 	private static ArrayList<Integer> vertauschO_IS=new ArrayList<Integer>();
 	private static ArrayList<Integer> vergleichO_IS=new ArrayList<Integer>();
-	private static int[] vergleichO=new int[4];
-	private static int[] vertauschO=new int[4];
+	private static ArrayList<Integer> vertauschO_QS=new ArrayList<Integer>();
+	private static ArrayList<Integer> vergleichO_QS=new ArrayList<Integer>();
+	private static int[] vergleichO=new int[5];
+	private static int[] vertauschO=new int[5];
 	static int[] zahlen=new int[anzahl];
 	static long bubbleSort_zeit;
 	static long unstableSelectionSort_zeit;
 	static long stableSelectionSort_zeit;
 	static long insertionSort_zeit;
+	static long quickSort_zeit;
 	
 	public static void main(String[] args) {
 		for (int i = 0; i < counterA; i++) {
@@ -32,6 +35,8 @@ public class Sortieralgorithmen {
 			stableSelectionSort(zufallszahlen);
 			gleichsetzen();
 			insertionSort(zufallszahlen);
+			gleichsetzen();
+			quickSort_Main(zufallszahlen);
 		}
 		werte();
 		ausgabe();
@@ -46,6 +51,8 @@ public class Sortieralgorithmen {
 		Collections.sort(vergleichO_US);
 		Collections.sort(vergleichO_SS);
 		Collections.sort(vergleichO_IS);
+		Collections.sort(vergleichO_QS);
+		Collections.sort(vergleichO_QS);
 		for(int i=0; i<vertauschO_BS.size(); i++) {
 			vertauschO[0]=vertauschO[0]+vertauschO_BS.get(i);
 		}
@@ -69,6 +76,12 @@ public class Sortieralgorithmen {
 		}
 		for(int i=0; i<vergleichO_IS.size(); i++) {
 			vergleichO[3]=vergleichO[3]+vergleichO_IS.get(i);
+		}
+		for(int i=0; i<vertauschO_QS.size(); i++) {
+			vertauschO[4]=vertauschO[4]+vertauschO_QS.get(i);
+		}
+		for(int i=0; i<vergleichO_QS.size(); i++) {
+			vergleichO[4]=vergleichO[4]+vergleichO_QS.get(i);
 		}
 	}
 	
@@ -96,6 +109,11 @@ public class Sortieralgorithmen {
 		System.out.println("Vergleichoperationen: "+vergleichO[3]/counterA+" | Median: "+vergleichO_IS.get((counterA/2)-1));
 		System.out.println("Vertauschoperationen: "+vertauschO[3]/counterA+" | Median: "+vertauschO_IS.get((counterA/2)-1));
 		System.out.println("Zeit: "+insertionSort_zeit/counterA);
+		System.out.println();
+		System.out.println("QuickSort: ");
+		System.out.println("Vergleichoperationen: "+vergleichO[4]/counterA+" | Median: "+vergleichO_QS.get((counterA/2)-1));
+		System.out.println("Vertauschoperationen: "+vertauschO[4]/counterA+" | Median: "+vertauschO_QS.get((counterA/2)-1));
+		System.out.println("Zeit: "+quickSort_zeit/counterA);
 	}
 	
 	public static void gleichsetzen() {
@@ -206,5 +224,48 @@ public class Sortieralgorithmen {
 		insertionSort_zeit=insertionSort_zeit+System.nanoTime()-start;
 		vertauschO_IS.add(counter_a);
 		vergleichO_IS.add(counter_b);
+	}
+	
+	static int counter_vert=0;
+	static int counter_verg=0;
+	
+	public static void quickSort_Main(int[] zahlen) {
+		counter_verg=0;
+		counter_vert=0;
+		int n=zahlen.length;
+		long start=System.nanoTime();
+		quickSort(zahlen, 0, n-1);
+		quickSort_zeit=quickSort_zeit+System.nanoTime()-start;
+		vertauschO_QS.add(counter_vert);
+		vergleichO_QS.add(counter_verg);
+	}
+	
+	public static void swap(int[] zahlen, int i, int j) {
+		counter_vert++;
+		int a=zahlen[i];
+		zahlen[i]=zahlen[j];
+		zahlen[j]=a;
+	}
+	
+	public static int partition(int[] zahlen, int low, int high) {
+		int pivot=zahlen[high];
+		int i=(low-1);
+		for(int j=low; j<=high-1; j++) {
+			if(zahlen[j]<pivot) {
+				i++;
+				swap(zahlen, i, j);
+			}
+			counter_verg++;
+		}
+		swap(zahlen, i+1, high);
+		return (i+1);
+	}
+	
+	public static void quickSort(int[] zahlen, int low, int high) {
+		if(low<high) {
+			int pi=partition(zahlen, low, high);
+			quickSort(zahlen, low, pi-1);
+			quickSort(zahlen, pi+1, high);
+		}
 	}
 }

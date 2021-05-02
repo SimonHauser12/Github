@@ -14,6 +14,7 @@ Das Programm vergleicht mehrere Sortieralgorithmen:
 * Unstable Selection Sort
 * Stable Selection Sort
 * Insertion Sort
+* Quick Sort
 
 Es werden jeweils die durchschnittlich benötigten Zeiten und die durchschnittliche Anzahl der 
 Vergleich- sowie der Vertauschoperationen für die Sortierung von Zufallszahlen ermittelt.
