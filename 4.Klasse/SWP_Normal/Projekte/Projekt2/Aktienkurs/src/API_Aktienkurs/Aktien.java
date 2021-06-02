@@ -239,82 +239,108 @@ public class Aktien{
 		}
 	}
 	
-	public void select_Strategie_Splitcorrected(double kapital){
+	public void select_Strategie_Splitcorrected(int wahl, double kapital){
 		String name;
 		double kapital0 = kapital;
 		double kapital1;
 		try {
-			Statement stat=con.createStatement();  
-			ResultSet reSe=stat.executeQuery("select Name, Kapital from Aktie_"+type+"_200erStrategie order by id desc limit 1");
 			System.out.println();
-			while(reSe.next()) {
-				System.out.println("200er-Strategie mit splitkorrigierten Werten");
-				name=reSe.getString("Name");
-				kapital1=Double.parseDouble(reSe.getString("Kapital"));
-				System.out.println(name);
-				System.out.println("Startkapital: "+kapital0+" | Endkapital: "+kapital1+" --> prozentuelle Veränderung: "+(((kapital1/kapital0)-1)*100)+"%");
-			}
-			Statement stat2=con.createStatement(); 
-			ResultSet reSe2=stat2.executeQuery("select Name, Kapital from Aktie_"+type+"_200er_3_Strategie order by id desc limit 1");
+			System.out.println("Splitkorrigierte Werte:");
 			System.out.println();
-			while(reSe2.next()) {	
-				System.out.println("200er-3%-Strategie mit splitkorrigierten Werten");
-				name=reSe2.getString("Name");
-				kapital1=Double.parseDouble(reSe2.getString("Kapital"));
-				System.out.println(name);
-				System.out.println("Startkapital: "+kapital0+" | Endkapital: "+kapital1+" --> prozentuelle Veränderung: "+(((kapital1/kapital0)-1)*100)+"%");
+			if (wahl==1 || wahl==4) {
+				Statement stat = con.createStatement();
+				ResultSet reSe = stat.executeQuery(
+						"select Name, Kapital from Aktie_" + type + "_200erStrategie order by id desc limit 1");
+				while (reSe.next()) {
+					System.out.print("200er-Strategie ");
+					name = reSe.getString("Name");
+					kapital1 = Double.parseDouble(reSe.getString("Kapital"));
+					System.out.println(name);
+					System.out.println("Startkapital: " + kapital0 + " | Endkapital: " + kapital1
+							+ " --> prozentuelle Veränderung: " + (((kapital1 / kapital0) - 1) * 100) + "%");
+				} 
 			}
-			Statement stat3=con.createStatement(); 
-			ResultSet reSe3=stat3.executeQuery("select Name, Kapital from Aktie_"+type+"_buyandhold_Strategie order by id desc limit 1");
+			if (wahl==2 || wahl==4) {
+				Statement stat2 = con.createStatement();
+				ResultSet reSe2 = stat2.executeQuery(
+						"select Name, Kapital from Aktie_" + type + "_200er_3_Strategie order by id desc limit 1");
+				while (reSe2.next()) {
+					System.out.print("200er-3%-Strategie ");
+					name = reSe2.getString("Name");
+					kapital1 = Double.parseDouble(reSe2.getString("Kapital"));
+					System.out.println(name);
+					System.out.println("Startkapital: " + kapital0 + " | Endkapital: " + kapital1
+							+ " --> prozentuelle Veränderung: " + (((kapital1 / kapital0) - 1) * 100) + "%");
+				} 
+			}
+			if (wahl==3 || wahl==4) {
+				Statement stat3 = con.createStatement();
+				ResultSet reSe3 = stat3.executeQuery(
+						"select Name, Kapital from Aktie_" + type + "_buyandhold_Strategie order by id desc limit 1");
+				while (reSe3.next()) {
+					System.out.print("BuyAndHold-Strategie ");
+					name = reSe3.getString("Name");
+					kapital1 = Double.parseDouble(reSe3.getString("Kapital"));
+					System.out.println(name);
+					System.out.println("Startkapital: " + kapital0 + " | Endkapital: " + kapital1
+							+ " --> prozentuelle Veränderung: " + (((kapital1 / kapital0) - 1) * 100) + "%");
+				} 
+			}
 			System.out.println();
-			while(reSe3.next()) {	
-				System.out.println("BuyAndHold-Strategie mit splitkorrigierten Werten");
-				name=reSe3.getString("Name");
-				kapital1=Double.parseDouble(reSe3.getString("Kapital"));
-				System.out.println(name);
-				System.out.println("Startkapital: "+kapital0+" | Endkapital: "+kapital1+" --> prozentuelle Veränderung: "+(((kapital1/kapital0)-1)*100)+"%");
-			}
 		}catch(Exception ex){
 			ex.printStackTrace();
 			System.out.println("Verbinden fehlgeschlagen");
 		}
 	}
 	
-	public void select_Strategie_Rohwerte(double kapital){
+	public void select_Strategie_Rohwerte(int wahl, double kapital){
 		String name;
 		double kapital0 = kapital;
 		double kapital1;
 		try {
-			Statement stat=con.createStatement();  
-			ResultSet reSe=stat.executeQuery("select Name, Kapital from Aktie_"+type+"_200erStrategie order by id desc limit 1");
 			System.out.println();
-			while(reSe.next()) {
-				System.out.println("200er-Strategie mit splitkorrigierten Werten");
-				name=reSe.getString("Name");
-				kapital1=Double.parseDouble(reSe.getString("Kapital"));
-				System.out.println(name);
-				System.out.println("Startkapital: "+kapital0+" | Endkapital: "+kapital1+" --> prozentuelle Veränderung: "+(((kapital1/kapital0)-1)*100)+"%");
-			}
-			Statement stat2=con.createStatement(); 
-			ResultSet reSe2=stat2.executeQuery("select Name, Kapital from Aktie_"+type+"_200er_3_Strategie order by id desc limit 1");
+			System.out.println("Rohwerte:");
 			System.out.println();
-			while(reSe2.next()) {	
-				System.out.println("200er-3%-Strategie mit splitkorrigierten Werten");
-				name=reSe2.getString("Name");
-				kapital1=Double.parseDouble(reSe2.getString("Kapital"));
-				System.out.println(name);
-				System.out.println("Startkapital: "+kapital0+" | Endkapital: "+kapital1+" --> prozentuelle Veränderung: "+(((kapital1/kapital0)-1)*100)+"%");
+			if (wahl==1 || wahl==4) {
+				Statement stat = con.createStatement();
+				ResultSet reSe = stat.executeQuery("select Name, Kapital from Aktie_" + type
+						+ "_200erStrategie_Rohwerte order by id desc limit 1");
+				while (reSe.next()) {
+					System.out.print("200er-Strategie ");
+					name = reSe.getString("Name");
+					kapital1 = Double.parseDouble(reSe.getString("Kapital"));
+					System.out.println(name);
+					System.out.println("Startkapital: " + kapital0 + " | Endkapital: " + kapital1
+							+ " --> prozentuelle Veränderung: " + (((kapital1 / kapital0) - 1) * 100) + "%");
+				} 
 			}
-			Statement stat3=con.createStatement(); 
-			ResultSet reSe3=stat3.executeQuery("select Name, Kapital from Aktie_"+type+"_buyandhold_Strategie order by id desc limit 1");
+			if (wahl==2 || wahl==4) {
+				Statement stat2 = con.createStatement();
+				ResultSet reSe2 = stat2.executeQuery("select Name, Kapital from Aktie_" + type
+						+ "_200er_3_Strategie_Rohwerte order by id desc limit 1");
+				while (reSe2.next()) {
+					System.out.print("200er-3%-Strategie ");
+					name = reSe2.getString("Name");
+					kapital1 = Double.parseDouble(reSe2.getString("Kapital"));
+					System.out.println(name);
+					System.out.println("Startkapital: " + kapital0 + " | Endkapital: " + kapital1
+							+ " --> prozentuelle Veränderung: " + (((kapital1 / kapital0) - 1) * 100) + "%");
+				} 
+			}
+			if (wahl==3 || wahl==4) {
+				Statement stat3 = con.createStatement();
+				ResultSet reSe3 = stat3.executeQuery("select Name, Kapital from Aktie_" + type
+						+ "_buyandhold_Strategie_Rohwerte order by id desc limit 1");
+				while (reSe3.next()) {
+					System.out.print("BuyAndHold-Strategie ");
+					name = reSe3.getString("Name");
+					kapital1 = Double.parseDouble(reSe3.getString("Kapital"));
+					System.out.println(name);
+					System.out.println("Startkapital: " + kapital0 + " | Endkapital: " + kapital1
+							+ " --> prozentuelle Veränderung: " + (((kapital1 / kapital0) - 1) * 100) + "%");
+				} 
+			}
 			System.out.println();
-			while(reSe3.next()) {	
-				System.out.println("BuyAndHold-Strategie mit splitkorrigierten Werten");
-				name=reSe3.getString("Name");
-				kapital1=Double.parseDouble(reSe3.getString("Kapital"));
-				System.out.println(name);
-				System.out.println("Startkapital: "+kapital0+" | Endkapital: "+kapital1+" --> prozentuelle Veränderung: "+(((kapital1/kapital0)-1)*100)+"%");
-			}
 		}catch(Exception ex){
 			ex.printStackTrace();
 			System.out.println("Verbinden fehlgeschlagen");
