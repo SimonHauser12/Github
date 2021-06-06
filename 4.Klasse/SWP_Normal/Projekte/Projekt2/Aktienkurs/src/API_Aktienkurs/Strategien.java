@@ -7,13 +7,12 @@ import java.time.LocalDate;
 
 public class Strategien extends Aktien{
 	
-	int id=600;
 	int kauf=0;
 	double kaufwert = 0;
 	double durchschnitt = 0;
 	int counter=0;
 	int anzahl = 0;
-	boolean wert=false;
+	boolean wert;
 	LocalDate zeit;
 	String zeitpunkt = "";
 	
@@ -21,31 +20,37 @@ public class Strategien extends Aktien{
 		super(s, t, h, d, u, p);
 	}
 	
-	public void strategie_200er(double kapital, String start) {
+	public int zeitpruefen(String zeit) {
+		LocalDate i;
+		wert=false;
+		int a=0;
+		while (wert==false) {
+			try {
+				Statement stat = con.createStatement();
+				ResultSet reSe = stat.executeQuery("select * from " + type + "_roh a, Aktie_" + type
+						+ "_200erDurchschnitt_roh b where a.ID=b.ID and a.zeitpunkt='" + zeit + "'");
+				if(reSe.next()==false) {
+					throw new Exception();
+				}else {
+					a = Integer.parseInt(reSe.getString("ID"));
+					wert=true;
+				}
+			} catch (Exception e) {
+				i=LocalDate.parse(zeit);
+				i=i.plusDays(1);
+				zeit=""+i;
+			} 
+		}
+		return a;
+	}
+	
+	public void strategie_200er(double kapital, int id, int max) {
 		counter=0;
 		anzahl = 0;
 		wert=false;
 		
-		while (wert==false) {
-			try {
-				Statement stat = con.createStatement();
-				ResultSet reSe = stat.executeQuery("select * from Aktie_" + type + " a, Aktie_" + type
-						+ "_200erDurchschnitt b where a.ID=b.ID and a.zeitpunkt='" + start + "'");
-				if(reSe.next()==false) {
-					throw new Exception();
-				}else {
-					id = Integer.parseInt(reSe.getString("ID"));
-					wert=true;
-				}
-			} catch (Exception e) {
-				zeit=LocalDate.parse(start);
-				zeit=zeit.plusDays(1);
-				start=""+zeit;
-			} 
-		}
-		
 		int groesse=id;
-		while (id>=1) {
+		while (id<=max) {
 			try {
 				Statement stat = con.createStatement();
 				ResultSet reSe = stat.executeQuery("select * from Aktie_" + type + " a, Aktie_" + type
@@ -58,25 +63,25 @@ public class Strategien extends Aktien{
 				if(id==groesse && kauf==0) {
 					anzahl=0;
 					kauf=0;
-					strategie_200er_DB(zeitpunkt, type, anzahl, kauf, kapital);
+					id=strategie_200er_DB(zeitpunkt, type, anzahl, kauf, kapital, id);
 				}else {
-					if (kaufwert > durchschnitt && kauf == 0 && id > 1 && id < groesse) {
+					if (kaufwert > durchschnitt && kauf == 0 && id > groesse && id < max) {
 						anzahl = (int) (kapital / kaufwert);
 						kapital = kapital - (anzahl * kaufwert);
 						kauf = 1;
-						strategie_200er_DB(zeitpunkt, type, anzahl, kauf, kapital);
+						id=strategie_200er_DB(zeitpunkt, type, anzahl, kauf, kapital, id);
 					} else {
-						if (kaufwert < durchschnitt && kauf == 1 && id > 1 && id < groesse) {
+						if (kaufwert < durchschnitt && kauf == 1 && id > groesse && id < max) {
 							kapital = kapital + (anzahl * kaufwert);
 							anzahl = 0;
 							kauf = 0;
-							strategie_200er_DB(zeitpunkt, type, anzahl, kauf, kapital);
+							id=strategie_200er_DB(zeitpunkt, type, anzahl, kauf, kapital, id);
 						}else {
-							if(id==1) {
+							if(id==max) {
 								kapital = kapital + (anzahl * kaufwert);
 								anzahl=0;
 								kauf=0;
-								strategie_200er_DB(zeitpunkt, type, anzahl, kauf, kapital);
+								id=strategie_200er_DB(zeitpunkt, type, anzahl, kauf, kapital, id);
 							}
 						}
 					}
@@ -85,49 +90,35 @@ public class Strategien extends Aktien{
 				e.printStackTrace();
 				System.out.println("Verbinden fehlgeschlagen");
 			}
-			id--;
+			id++;
 		}
 	}
 	
-	public void strategie_200er_DB(String zeitpunkt, String type, int anzahl, int kauf, double kapital) {
+	public int strategie_200er_DB(String zeitpunkt, String type, int anzahl, int kauf, double kapital, int d) {
 		try {	
 			Statement stat = con.createStatement();
 			try {
 				counter++;
 				stat.executeUpdate("INSERT INTO Aktie_"+type+"_200erStrategie Values("+counter+", '" + zeitpunkt + "', '" + type + "', " + anzahl + ", " + kauf + ", " + kapital + ")");
 			} catch (SQLException s) {
-				stat.executeUpdate("UPDATE Aktie_"+type+"_200erStrategie Set Zeitpunkt='"+zeitpunkt+"', Anzahl="+anzahl+", Wert="+kauf+", Kapital="+kapital+" where ID=" + counter+"");
+				stat.executeUpdate("drop table Aktie_"+type+"_200erStrategie");
+				stat.executeUpdate("create table if not exists Aktie_"+type+"_200erStrategie(ID int, Zeitpunkt varchar(25), Name varchar(20), Anzahl int, Wert int, Kapital double, Primary Key(ID))");
+				counter--;
+				d--;
 			}
 		} catch (Exception e) {
 			System.out.println("Verbinden fehlgeschlagen");
 		}
+		return d;
 	}
 	
-	public void strategie_200er_3(double kapital, String start) {
+	public void strategie_200er_3(double kapital, int id, int max) {
 		counter=0;
 		anzahl = 0;
 		wert=false;
-		
-		while (wert==false) {
-			try {
-				Statement stat = con.createStatement();
-				ResultSet reSe = stat.executeQuery("select * from Aktie_" + type + " a, Aktie_" + type
-						+ "_200erDurchschnitt b where a.ID=b.ID and a.zeitpunkt='" + start + "'");
-				if(reSe.next()==false) {
-					throw new Exception();
-				}else {
-					id = Integer.parseInt(reSe.getString("ID"));
-					wert=true;
-				}
-			} catch (Exception e) {
-				zeit=LocalDate.parse(start);
-				zeit=zeit.plusDays(1);
-				start=""+zeit;
-			} 
-		}
-		
+
 		int groesse=id;
-		while (id>=1) {
+		while (id<=max) {
 			try {
 				Statement stat = con.createStatement();
 				ResultSet reSe = stat.executeQuery("select * from Aktie_" + type + " a, Aktie_" + type
@@ -140,25 +131,25 @@ public class Strategien extends Aktien{
 				if(id==groesse && kauf==0) {
 					anzahl=0;
 					kauf=0;
-					strategie_200er_3_DB(zeitpunkt, type, anzahl, kauf, kapital);
+					id=strategie_200er_3_DB(zeitpunkt, type, anzahl, kauf, kapital, id);
 				}else {
-					if (kaufwert > (durchschnitt * 1.03) && kauf == 0 && id > 1 && id < groesse) {
+					if (kaufwert > (durchschnitt * 1.03) && kauf == 0 && id > groesse && id < max) {
 						anzahl = (int) (kapital / kaufwert);
 						kapital = kapital - (anzahl * kaufwert);
 						kauf = 1;
-						strategie_200er_3_DB(zeitpunkt, type, anzahl, kauf, kapital);
+						id=strategie_200er_3_DB(zeitpunkt, type, anzahl, kauf, kapital, id);
 					} else {
-						if (kaufwert < (durchschnitt * 1.03) && kauf == 1 && id > 1 && id < groesse) {
+						if (kaufwert < (durchschnitt * 1.03) && kauf == 1 && id > groesse && id < max) {
 							kapital = kapital + (anzahl * kaufwert);
 							anzahl = 0;
 							kauf = 0;
-							strategie_200er_3_DB(zeitpunkt, type, anzahl, kauf, kapital);
+							id=strategie_200er_3_DB(zeitpunkt, type, anzahl, kauf, kapital, id);
 						}else {
-							if(id==1) {
+							if(id==max) {
 								kapital = kapital + (anzahl * kaufwert);
 								anzahl=0;
 								kauf=0;
-								strategie_200er_3_DB(zeitpunkt, type, anzahl, kauf, kapital);
+								id=strategie_200er_3_DB(zeitpunkt, type, anzahl, kauf, kapital, id);
 							}
 						}
 					} 
@@ -167,48 +158,35 @@ public class Strategien extends Aktien{
 				e.printStackTrace();
 				System.out.println("Verbinden fehlgeschlagen");
 			}
-			id--;
+			id++;
 		}
 	}
 	
-	public void strategie_200er_3_DB(String zeitpunkt, String type, int anzahl, int kauf, double kapital) {
+	public int strategie_200er_3_DB(String zeitpunkt, String type, int anzahl, int kauf, double kapital, int d) {
 		try {	
 			Statement stat = con.createStatement();
 			try {
 				counter++;
 				stat.executeUpdate("INSERT INTO Aktie_"+type+"_200er_3_Strategie Values("+counter+", '" + zeitpunkt + "', '" + type + "', " + anzahl + ", " + kauf + ", " + kapital + ")");
 			} catch (SQLException s) {
-				stat.executeUpdate("UPDATE Aktie_"+type+"_200er_3_Strategie Set Zeitpunkt='"+zeitpunkt+"', Anzahl="+anzahl+", Wert="+kauf+", Kapital="+kapital+" where ID=" + counter+"");
+				stat.executeUpdate("drop table Aktie_"+type+"_200er_3_Strategie");
+				stat.executeUpdate("create table if not exists Aktie_"+type+"_200er_3_Strategie(ID int, Zeitpunkt varchar(25), Name varchar(20), Anzahl int, Wert int, Kapital double, Primary Key(ID))");
+				counter--;
+				d--;
 			}
 		} catch (Exception e) {
 			System.out.println("Verbinden fehlgeschlagen");
 		}
+		return d;
 	}
 	
-	public void strategie_buyandhold(double kapital, String start) {
+	public void strategie_buyandhold(double kapital, int id, int max) {
 		counter=0;
 		anzahl = 0;
 		wert=false;
 		
-		while (wert==false) {
-			try {
-				Statement stat = con.createStatement();
-				ResultSet reSe = stat.executeQuery("select * from Aktie_" + type + " where zeitpunkt='" + start + "'");
-				if(reSe.next()==false) {
-					throw new Exception();
-				}else {
-					id = Integer.parseInt(reSe.getString("ID"));
-					wert=true;
-				}
-			} catch (Exception e) {
-				zeit=LocalDate.parse(start);
-				zeit=zeit.plusDays(1);
-				start=""+zeit;
-			} 
-		}
-		
 		int groesse=id;
-		while (id>=1) {
+		while (id<=max) {
 			try {
 				Statement stat = con.createStatement();
 				ResultSet reSe = stat.executeQuery("select * from Aktie_" + type + " where ID=" + id + "");
@@ -218,22 +196,22 @@ public class Strategien extends Aktien{
 				}
 				if(id==groesse && kauf==0) {
 					kauf=0;
-					strategie_buyandhold_DB(zeitpunkt, type, anzahl, kauf, kapital);
-					id--;
+					id=strategie_buyandhold_DB(zeitpunkt, type, anzahl, kauf, kapital, id);
+					id++;
 				}else {
-					if (id > 1 && id < groesse && kauf == 0) {
+					if (id > groesse && id < max && kauf == 0) {
 						anzahl = (int) (kapital / kaufwert);
 						kapital = kapital - (anzahl * kaufwert);
 						kauf = 1;
-						strategie_buyandhold_DB(zeitpunkt, type, anzahl, kauf, kapital);
-						id=1;
+						id=strategie_buyandhold_DB(zeitpunkt, type, anzahl, kauf, kapital, id);
+						id=max;
 					} else {
-						if (id == 1) {
+						if (id == max) {
 							kapital = kapital + (anzahl * kaufwert);
 							anzahl = 0;
 							kauf = 0;
-							strategie_buyandhold_DB(zeitpunkt, type, anzahl, kauf, kapital);
-							id--;
+							id=strategie_buyandhold_DB(zeitpunkt, type, anzahl, kauf, kapital, id);
+							id++;
 						}
 					} 
 				}
@@ -244,46 +222,32 @@ public class Strategien extends Aktien{
 		}
 	}
 	
-	public void strategie_buyandhold_DB(String zeitpunkt, String type, int anzahl, int kauf, double kapital) {
+	public int strategie_buyandhold_DB(String zeitpunkt, String type, int anzahl, int kauf, double kapital, int d) {
 		try {	
 			Statement stat = con.createStatement();
 			try {
 				counter++;
 				stat.executeUpdate("INSERT INTO Aktie_"+type+"_buyandhold_Strategie Values("+counter+", '" + zeitpunkt + "', '" + type + "', " + anzahl + ", " + kauf + ", " + kapital + ")");
 			} catch (SQLException s) {
-				stat.executeUpdate("UPDATE Aktie_"+type+"_buyandhold_Strategie Set Zeitpunkt='"+zeitpunkt+"', Anzahl="+anzahl+", Wert="+kauf+", Kapital="+kapital+" where ID=" + counter+"");
+				stat.executeUpdate("drop table Aktie_"+type+"_buyandhold_Strategie");
+				stat.executeUpdate("create table if not exists Aktie_"+type+"_buyandhold_Strategie(ID int, Zeitpunkt varchar(25), Name varchar(20), Anzahl int, Wert int, Kapital double, Primary Key(ID))");
+				counter--;
+				d--;
 			}
 		} catch (Exception e) {
 			System.out.println("Verbinden fehlgeschlagen");
 		}
+		return d;
 	}
 
-	public void strategie_200er_rohwerte(double kapital, String start) {
+	public void strategie_200er_rohwerte(double kapital, int id, int max) {
 		counter=0;
 		anzahl=0;
 		wert=false;
 		double split=0;
 		
-		while (wert==false) {
-			try {
-				Statement stat = con.createStatement();
-				ResultSet reSe = stat.executeQuery("select * from " + type + "_roh a, Aktie_" + type
-						+ "_200erDurchschnitt_roh b where a.ID=b.ID and a.zeitpunkt='" + start + "'");
-				if(reSe.next()==false) {
-					throw new Exception();
-				}else {
-					id = Integer.parseInt(reSe.getString("ID"));
-					wert=true;
-				}
-			} catch (Exception e) {
-				zeit=LocalDate.parse(start);
-				zeit=zeit.plusDays(1);
-				start=""+zeit;
-			} 
-		}
-		
 		int groesse=id;
-		while (id>=1) {
+		while (id<=max) {
 			try {
 				Statement stat = con.createStatement();
 				ResultSet reSe = stat.executeQuery("select * from " + type + "_roh a, Aktie_" + type
@@ -294,32 +258,32 @@ public class Strategien extends Aktien{
 					zeitpunkt = reSe.getString("Zeitpunkt");
 					split=Double.parseDouble(reSe.getString("Splitfaktor"));
 				}
-				if(split>1 && id > 1 && id < groesse) {
+				if(split>1 && id > groesse && id < max) {
 					anzahl = (int)(anzahl*split);
-					strategie_200er_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split);
+					id=strategie_200er_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split, id);
 				}else {
 					if(id==groesse && kauf==0) {
 						anzahl=0;
 						kauf=0;
-						strategie_200er_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split);
+						id=strategie_200er_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split, id);
 					}else {
-						if (kaufwert > durchschnitt && kauf == 0 && id > 1 && id < groesse) {
+						if (kaufwert > durchschnitt && kauf == 0 && id > groesse && id < max) {
 							anzahl = (int) (kapital / kaufwert);
 							kapital = kapital - (anzahl * kaufwert);
 							kauf = 1;
-							strategie_200er_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split);
+							id=strategie_200er_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split, id);
 						} else {
-							if (kaufwert < durchschnitt && kauf == 1 && id > 1 && id < groesse) {
+							if (kaufwert < durchschnitt && kauf == 1 && id > groesse && id < max) {
 								kapital = kapital + (anzahl * kaufwert);
 								anzahl = 0;
 								kauf = 0;
-								strategie_200er_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split);
+								id=strategie_200er_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split, id);
 							}else {
-								if(id==1) {
+								if(id==max) {
 									kapital = kapital + (anzahl * kaufwert);
 									anzahl=0;
 									kauf=0;
-									strategie_200er_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split);
+									id=strategie_200er_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split, id);
 								}
 							}
 						}
@@ -327,13 +291,13 @@ public class Strategien extends Aktien{
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("Verbinden fehlgeschlagen");
+				System.out.println("Verbinden 1 fehlgeschlagen");
 			}
-			id--;
+			id++;
 		}
 	}
 	
-	public void strategie_200er_rohwerte_DB(String zeitpunkt, String type, int anzahl, int kauf, double kapital, double split) {
+	public int strategie_200er_rohwerte_DB(String zeitpunkt, String type, int anzahl, int kauf, double kapital, double split, int d) {
 		try {	
 			Statement stat = con.createStatement();
 			try {
@@ -342,43 +306,29 @@ public class Strategien extends Aktien{
 					stat.executeUpdate("INSERT INTO Aktie_" + type + "_200erStrategie_Rohwerte Values(" + counter+ ", '" + zeitpunkt + "', '" + type + "', " + anzahl + ", " + kauf + ", " + kapital+ ")");
 				}else {
 					if(split>1) {
-						throw new SQLException();
+						stat.executeUpdate("UPDATE Aktie_"+type+"_200erStrategie_Rohwerte Set Anzahl="+anzahl+", Wert="+kauf+", Kapital="+kapital+" where ID=" + counter+"");
 					}
 				}
 			} catch (SQLException s) {
-				stat.executeUpdate("UPDATE Aktie_"+type+"_200erStrategie_Rohwerte Set Zeitpunkt='"+zeitpunkt+"', Anzahl="+anzahl+", Wert="+kauf+", Kapital="+kapital+" where ID=" + counter+"");
+				stat.executeUpdate("drop table Aktie_"+type+"_200erStrategie_Rohwerte");
+				stat.executeUpdate("create table if not exists Aktie_"+type+"_200erStrategie_Rohwerte(ID int, Zeitpunkt varchar(25), Name varchar(20), Anzahl int, Wert int, Kapital double, Primary Key(ID))");
+				counter--;
+				d--;
 			}
 		} catch (Exception e) {
-			System.out.println("Verbinden fehlgeschlagen");
+			System.out.println("Verbinden 2 fehlgeschlagen");
 		}
+		return d;
 	}
 	
-	public void strategie_200er_3_rohwerte(double kapital,  String start) {
+	public void strategie_200er_3_rohwerte(double kapital, int id, int max) {
 		counter=0;
 		anzahl=0;
 		wert=false;
 		double split=0;
 		
-		while (wert==false) {
-			try {
-				Statement stat = con.createStatement();
-				ResultSet reSe = stat.executeQuery("select * from " + type + "_roh a, Aktie_" + type
-						+ "_200erDurchschnitt_roh b where a.ID=b.ID and a.zeitpunkt='" + start + "'");
-				if(reSe.next()==false) {
-					throw new Exception();
-				}else {
-					id = Integer.parseInt(reSe.getString("ID"));
-					wert=true;
-				}
-			} catch (Exception e) {
-				zeit=LocalDate.parse(start);
-				zeit=zeit.plusDays(1);
-				start=""+zeit;
-			} 
-		}
-		
 		int groesse=id;
-		while (id>=1) {
+		while (id<=max) {
 			try {
 				Statement stat = con.createStatement();
 				ResultSet reSe = stat.executeQuery("select * from " + type + "_roh a, Aktie_" + type
@@ -389,32 +339,32 @@ public class Strategien extends Aktien{
 					zeitpunkt = reSe.getString("Zeitpunkt");
 					split=Double.parseDouble(reSe.getString("Splitfaktor"));
 				}
-				if(split>1 && id > 1 && id < groesse) {
+				if(split>1 && id > groesse && id < max) {
 					anzahl = (int)(anzahl*split);
-					strategie_200er_3_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split);
+					id=strategie_200er_3_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split, id);
 				}else {
 					if(id==groesse && kauf==0) {
 						anzahl=0;
 						kauf=0;
-						strategie_200er_3_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split);
+						id=strategie_200er_3_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split, id);
 					}else {
-						if (kaufwert > (durchschnitt * 1.03) && kauf == 0 && id > 1 && id < groesse) {
+						if (kaufwert > (durchschnitt * 1.03) && kauf == 0 && id > groesse && id < max) {
 							anzahl = (int) (kapital / kaufwert);
 							kapital = kapital - (anzahl * kaufwert);
 							kauf = 1;
-							strategie_200er_3_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split);
+							id=strategie_200er_3_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split, id);
 						} else {
-							if (kaufwert < (durchschnitt * 1.03) && kauf == 1 && id > 1 && id < groesse) {
+							if (kaufwert < (durchschnitt * 1.03) && kauf == 1 && id > groesse && id < max) {
 								kapital = kapital + (anzahl * kaufwert);
 								anzahl = 0;
 								kauf = 0;
-								strategie_200er_3_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split);
+								id=strategie_200er_3_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split, id);
 							}else {
-								if(id==1) {
+								if(id==max) {
 									kapital = kapital + (anzahl * kaufwert);
 									anzahl=0;
 									kauf=0;
-									strategie_200er_3_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split);
+									id=strategie_200er_3_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split, id);
 								}
 							}
 						} 
@@ -422,13 +372,13 @@ public class Strategien extends Aktien{
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("Verbinden fehlgeschlagen");
+				System.out.println("Verbinden 3 fehlgeschlagen");
 			}
-			id--;
+			id++;
 		}
 	}
 	
-	public void strategie_200er_3_rohwerte_DB(String zeitpunkt, String type, int anzahl, int kauf, double kapital, double split) {
+	public int strategie_200er_3_rohwerte_DB(String zeitpunkt, String type, int anzahl, int kauf, double kapital, double split, int d) {
 		try {	
 			Statement stat = con.createStatement();
 			try {
@@ -437,42 +387,30 @@ public class Strategien extends Aktien{
 					stat.executeUpdate("INSERT INTO Aktie_" + type + "_200er_3_Strategie_Rohwerte Values(" + counter+ ", '" + zeitpunkt + "', '" + type + "', " + anzahl + ", " + kauf + ", " + kapital+ ")");
 				}else {
 					if(split>1) {
-						throw new SQLException();
+						stat.executeUpdate("UPDATE Aktie_"+type+"_200er_3_Strategie_Rohwerte Set Anzahl="+anzahl+", Wert="+kauf+", Kapital="+kapital+" where ID=" + counter+"");
 					}
 				}
 			} catch (SQLException s) {
-				stat.executeUpdate("UPDATE Aktie_"+type+"_200er_3_Strategie_Rohwerte Set Zeitpunkt='"+zeitpunkt+"', Anzahl="+anzahl+", Wert="+kauf+", Kapital="+kapital+" where ID=" + counter+"");
+				stat.executeUpdate("drop table Aktie_"+type+"_200er_3_Strategie_Rohwerte");
+				stat.executeUpdate("create table if not exists Aktie_"+type+"_200er_3_Strategie_Rohwerte(ID int, Zeitpunkt varchar(25), Name varchar(20), Anzahl int, Wert int, Kapital double, Primary Key(ID))");
+				counter--;
+				d--;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Verbinden fehlgeschlagen");
 		}
+		return d;
 	}
 	
-	public void strategie_buyandhold_rohwerte(double kapital, String start) {
+	public void strategie_buyandhold_rohwerte(double kapital, int id, int max) {
 		counter=0;
 		anzahl=0;
 		wert=false;
 		double split=0;
 		
-		while (wert==false) {
-			try {
-				Statement stat = con.createStatement();
-				ResultSet reSe = stat.executeQuery("select * from " + type + "_roh where zeitpunkt='" + start + "'");
-				if(reSe.next()==false) {
-					throw new Exception();
-				}else {
-					id = Integer.parseInt(reSe.getString("ID"));
-					wert=true;
-				}
-			} catch (Exception e) {
-				zeit=LocalDate.parse(start);
-				zeit=zeit.plusDays(1);
-				start=""+zeit;
-			} 
-		}
-		
 		int groesse=id;
-		while (id>=1) {
+		while (id<=max) {
 			try {
 				Statement stat = con.createStatement();
 				ResultSet reSe = stat.executeQuery("select * from " + type + "_roh where ID=" + id + "");
@@ -481,30 +419,30 @@ public class Strategien extends Aktien{
 					zeitpunkt = reSe.getString("Zeitpunkt");
 					split=Double.parseDouble(reSe.getString("Splitfaktor"));
 				}
-				if(split>1 && id > 1 && id < groesse) {
+				if(split>1 && id > groesse && id < max) {
 					anzahl = (int)(anzahl*split);
-					strategie_buyandhold_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split);
+					id=strategie_buyandhold_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split, id);
 				}else {
 					if(id==groesse && kauf==0) {
 						kauf=0;
-						strategie_buyandhold_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split);
+						id=strategie_buyandhold_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split, id);
 					}else {
-						if (id==groesse-1 && kauf == 0) {
+						if (id==groesse+1 && kauf == 0) {
 							anzahl = (int) (kapital / kaufwert);
 							kapital = kapital - (anzahl * kaufwert);
 							kauf = 1;
-							strategie_buyandhold_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split);
+							id=strategie_buyandhold_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split, id);
 						} else {
-							if (id == 1) {
+							if (id == max) {
 								kapital = kapital + (anzahl * kaufwert);
 								anzahl = 0;
 								kauf = 0;
-								strategie_buyandhold_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split);
+								id=strategie_buyandhold_rohwerte_DB(zeitpunkt, type, anzahl, kauf, kapital, split, id);
 							}
 						} 
 					}
 				}
-				id--;
+				id++;
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Verbinden fehlgeschlagen");
@@ -512,7 +450,7 @@ public class Strategien extends Aktien{
 		}
 	}
 	
-	public void strategie_buyandhold_rohwerte_DB(String zeitpunkt, String type, int anzahl, int kauf, double kapital, double split) {
+	public int strategie_buyandhold_rohwerte_DB(String zeitpunkt, String type, int anzahl, int kauf, double kapital, double split, int d) {
 		try {	
 			Statement stat = con.createStatement();
 			try {
@@ -521,14 +459,18 @@ public class Strategien extends Aktien{
 					stat.executeUpdate("INSERT INTO Aktie_"+type+"_buyandhold_Strategie_Rohwerte Values("+counter+", '" + zeitpunkt + "', '" + type + "', " + anzahl + ", " + kauf + ", " + kapital + ")");
 				}else {
 					if(split>1) {
-						throw new SQLException();
+						stat.executeUpdate("UPDATE Aktie_"+type+"_buyandhold_Strategie_Rohwerte Set Anzahl="+anzahl+", Wert="+kauf+", Kapital="+kapital+" where ID=" + counter+"");
 					}
 				}
 			} catch (SQLException s) {
-				stat.executeUpdate("UPDATE Aktie_"+type+"_buyandhold_Strategie_Rohwerte Set Zeitpunkt='"+zeitpunkt+"', Anzahl="+anzahl+", Wert="+kauf+", Kapital="+kapital+" where ID=" + counter+"");
+				stat.executeUpdate("drop table Aktie_"+type+"_buyandhold_Strategie_Rohwerte");
+				stat.executeUpdate("create table if not exists Aktie_"+type+"_buyandhold_Strategie_Rohwerte(ID int, Zeitpunkt varchar(25), Name varchar(20), Anzahl int, Wert int, Kapital double, Primary Key(ID))");
+				counter--;
+				d--;
 			}
 		} catch (Exception e) {
 			System.out.println("Verbinden fehlgeschlagen");
 		}
+		return d;
 	}
 }

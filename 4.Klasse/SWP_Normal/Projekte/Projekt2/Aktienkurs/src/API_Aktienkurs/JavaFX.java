@@ -102,7 +102,7 @@ public class JavaFX extends Application {
 			 
 			 LocalDate zeit=LocalDate.now();
 			 WritableImage bild=scene.snapshot(null);
-			 File datei=new File("D:\\SimonHTL\\Programmieren\\Programmieren\\API2_Aktienkurs\\Chart-Bilder\\"+TestMain.ticker.get(j)+"_"+zeit+".png");
+			 File datei=new File("D:\\SimonHTL\\Programmieren\\Programmieren\\API2_Aktienkurs\\Chart-Bilder\\Aktie\\"+TestMain.ticker.get(j)+"_"+zeit+".png");
 			 ImageIO.write(SwingFXUtils.fromFXImage(bild, null), "PNG", datei);
 			 System.out.println("Bild gespeichert");
 		 	}

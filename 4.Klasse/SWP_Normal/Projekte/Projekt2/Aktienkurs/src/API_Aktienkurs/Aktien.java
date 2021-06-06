@@ -18,15 +18,14 @@ public class Aktien{
 
 	String host, database, user, passwort;
 	String type;
-	int anzahl;
 	int tage;
+	int max;
 	int ID=1;
 	Connection con;
 
 	public Aktien(String s, int t, String h, String d, String u, String p) {
 		this.type=s;
 		this.tage=t;
-		this.anzahl=t;
 		this.host=h;
 		this.database=d;
 		this.user=u;
@@ -56,15 +55,21 @@ public class Aktien{
 		JSONObject json = new JSONObject(IOUtils.toString(new URL(URL), Charset.forName("UTF-8")));
 		JSONObject firstStep = (JSONObject) json.get("Time Series (Daily)");
 		int zaehler=0;
+		LocalDate a;
 		
 		do {
-			tage=tage+getPreis(firstStep, "" + LocalDate.now().minusDays(zaehler + 1) + "", zaehler);
+			a=LocalDate.now().minusDays(tage-zaehler);
+			getPreis(firstStep, "" + a + "");
 			zaehler++;
-		} while (zaehler<tage);
-
+			System.out.println(zaehler);
+		} while (tage>zaehler);
+		maxID();
+		gleitenderDurchschnitt_roh();
+	}
+	
+	public void werte_corrected() {
 		splitcorrection();
-		gleitenderDurchschnitt(anzahl);
-		gleitenderDurchschnitt_roh(anzahl);
+		gleitenderDurchschnitt();
 	}
 	
 	public void splitcorrection() {
@@ -80,22 +85,21 @@ public class Aktien{
 								+ ",'" + reSe.getString("Zeitpunkt") + "'," + reSe.getString("TagesEndPreis")
 								+ ")");
 					} catch (SQLException e) {
-						stat2.executeUpdate("UPDATE Aktie_" + type + " Set TagesEndPreis="
-								+ reSe.getString("TagesEndPreis") + " where ID=" + reSe.getString("ID"));
+						stat2.executeUpdate("UPDATE Aktie_" + type + " Set TagesEndPreis="+ reSe.getString("TagesEndPreis") + ", Zeitpunkt='"+reSe.getString("Zeitpunkt")+"' where ID=" + reSe.getString("ID"));
 					} 
 					stat2=con.createStatement();
-					ResultSet reSe2=stat2.executeQuery("select * from "+type+"_roh where id>"+reSe.getString("ID"));
+					ResultSet reSe2=stat2.executeQuery("select * from Aktie_"+type+" where id<"+reSe.getString("ID"));
 					while (reSe2.next()) {
 						double close=Double.parseDouble(reSe2.getString("TagesEndPreis"))/Double.parseDouble(reSe.getString("Splitfaktor"));
 						Statement stat3=con.createStatement();
 						try {
 							stat3.executeUpdate("INSERT INTO Aktie_" + type + " Values("+reSe2.getString("ID")+",'" +reSe2.getString("Zeitpunkt")+ "'," +close+ ")");
 						} catch (SQLException e) {
-							stat3.executeUpdate("UPDATE Aktie_" + type + " Set TagesEndPreis="+close+" where ID=" + reSe2.getString("ID"));
+							stat3.executeUpdate("UPDATE Aktie_" + type + " Set TagesEndPreis="+close+", Zeitpunkt='"+reSe2.getString("Zeitpunkt")+"' where ID=" + reSe2.getString("ID"));
 						}
 					}
-					counter++;
 				}else {
+					System.out.println("da");
 					if(Double.parseDouble(reSe.getString("Splitfaktor"))==1) {
 						if (counter==0) {
 							Statement stat3 = con.createStatement();
@@ -104,8 +108,7 @@ public class Aktien{
 										+ ",'" + reSe.getString("Zeitpunkt") + "'," + reSe.getString("TagesEndPreis")
 										+ ")");
 							} catch (SQLException e) {
-								stat3.executeUpdate("UPDATE Aktie_" + type + " Set TagesEndPreis="
-										+ reSe.getString("TagesEndPreis") + " where ID=" + reSe.getString("ID"));
+								//stat3.executeUpdate("UPDATE Aktie_" + type + " Set TagesEndPreis="+ reSe.getString("TagesEndPreis") + " where ID=" + reSe.getString("ID"));
 							} 
 						}
 					}
@@ -117,12 +120,12 @@ public class Aktien{
 		}
 	}
 	
-	public void gleitenderDurchschnitt(int max){
-		int id=1;
-		while (id<=(max-200)) {
+	public void gleitenderDurchschnitt(){
+		int id=200;
+		while (id<=max) {
 			try {
 				Statement stat=con.createStatement();
-				ResultSet reSe=stat.executeQuery("select avg(TagesEndPreis) as Durchschnitt from Aktie_"+type+" where ID>="+id+" and ID<"+(id+200));	
+				ResultSet reSe=stat.executeQuery("select avg(TagesEndPreis) as Durchschnitt from Aktie_"+type+" where ID>="+(id-200)+" and ID<="+id);	
 				while (reSe.next()) {
 					double durchschnitt=Double.parseDouble(reSe.getString("Durchschnitt"));
 					DB_INSERT(durchschnitt, id);
@@ -135,12 +138,24 @@ public class Aktien{
 		}
 	}
 	
-	public void gleitenderDurchschnitt_roh(int max){
-		int id=1;
-		while (id<=(max-200)) {
+	public void maxID() {
+		try {
+			Statement stat=con.createStatement();
+			ResultSet reSe=stat.executeQuery("select ID from "+type+"_roh order by ID desc limit 1");	
+			while (reSe.next()) {
+				max=Integer.parseInt(reSe.getString("ID"));
+			}
+		}catch(Exception ex){
+			System.out.println("Verbinden fehlgeschlagen");
+		}
+	}
+	
+	public void gleitenderDurchschnitt_roh(){
+		int id=200;
+		while (id<=max) {
 			try {
 				Statement stat=con.createStatement();
-				ResultSet reSe=stat.executeQuery("select avg(TagesEndPreis) as Durchschnitt from "+type+"_roh where ID>="+id+" and ID<"+(id+200));	
+				ResultSet reSe=stat.executeQuery("select avg(TagesEndPreis) as Durchschnitt from "+type+"_roh where ID>="+(id-200)+" and ID<="+id);	
 				while (reSe.next()) {
 					double durchschnitt=Double.parseDouble(reSe.getString("Durchschnitt"));
 					DB_INSERT_roh(durchschnitt, id);
@@ -153,7 +168,7 @@ public class Aktien{
 		}
 	}
 	
-	public int getPreis(JSONObject json, String key, int z) throws JSONException, NumberFormatException, MalformedURLException, IOException {
+	public int getPreis(JSONObject json, String key) throws JSONException, NumberFormatException, MalformedURLException, IOException {
 		JSONObject bestaetigt = null;
 		try {
 			bestaetigt = (JSONObject) json.get(key);
@@ -177,7 +192,7 @@ public class Aktien{
 				stat.execute("CREATE DATABASE IF NOT EXISTS Aktien");
 			}*/
 			stat.execute("use Aktien");
-			stat.execute("create table if not exists "+type+"_roh(ID int, Zeitpunkt varchar(25), TagesEndPreis double, Splitfaktor double, Primary Key(ID))");
+			stat.execute("create table if not exists "+type+"_roh(ID int, Zeitpunkt varchar(25), TagesEndPreis double, Splitfaktor double, Primary Key(Zeitpunkt))");
 			stat.execute("create table if not exists Aktie_"+type+"(ID int, Zeitpunkt varchar(25), TagesEndPreis double, Primary Key(ID))");
 			stat.execute("create table if not exists Aktie_"+type+"_200erDurchschnitt(ID int, Durchschnitt double, Primary Key(ID))");
 			stat.execute("create table if not exists Aktie_"+type+"_200erDurchschnitt_roh(ID int, Durchschnitt double, Primary Key(ID))");
@@ -201,7 +216,8 @@ public class Aktien{
 				stat.executeUpdate("INSERT INTO " + type + "_roh Values("+id+",'" + zeitpunkt + "'," + closeWert + ","+split+")");
 				
 			} catch (SQLException e) {
-				stat.executeUpdate("UPDATE " + type + "_roh Set TagesEndPreis="+closeWert+", Splitfaktor="+split+" where ID=" + id);
+				//stat.executeUpdate("UPDATE "+type+"_roh Set ID="+id+" where Zeitpunkt='" + zeitpunkt+"'");
+				return;
 			}
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -217,6 +233,7 @@ public class Aktien{
 				
 			} catch (SQLException e) {
 				stat.executeUpdate("UPDATE Aktie_"+type+"_200erDurchschnitt Set Durchschnitt="+durchschnitt+" where ID=" + id);
+				//return;
 			}
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -231,7 +248,8 @@ public class Aktien{
 				stat.executeUpdate("INSERT INTO Aktie_"+type+"_200erDurchschnitt_roh Values("+id+"," + durchschnitt + ")");
 				
 			} catch (SQLException e) {
-				stat.executeUpdate("UPDATE Aktie_"+type+"_200erDurchschnitt_roh Set Durchschnitt="+durchschnitt+" where ID=" + id);
+				//stat.executeUpdate("UPDATE Aktie_"+type+"_200erDurchschnitt_roh Set Durchschnitt="+durchschnitt+" where ID=" + id);
+				return;
 			}
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -246,7 +264,6 @@ public class Aktien{
 		try {
 			System.out.println();
 			System.out.println("Splitkorrigierte Werte:");
-			System.out.println();
 			if (wahl==1 || wahl==4) {
 				Statement stat = con.createStatement();
 				ResultSet reSe = stat.executeQuery(
@@ -300,7 +317,6 @@ public class Aktien{
 		try {
 			System.out.println();
 			System.out.println("Rohwerte:");
-			System.out.println();
 			if (wahl==1 || wahl==4) {
 				Statement stat = con.createStatement();
 				ResultSet reSe = stat.executeQuery("select Name, Kapital from Aktie_" + type
