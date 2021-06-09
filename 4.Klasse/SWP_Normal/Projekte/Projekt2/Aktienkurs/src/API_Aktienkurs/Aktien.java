@@ -213,8 +213,9 @@ public class Aktien{
 		try {
 			Statement stat=con.createStatement();
 			try {
-				stat.executeUpdate("INSERT INTO " + type + "_roh Values("+id+",'" + zeitpunkt + "'," + closeWert + ","+split+")");
-				
+				maxID();
+				id=max;
+				stat.executeUpdate("INSERT INTO " + type + "_roh Values("+(id+1)+",'" + zeitpunkt + "'," + closeWert + ","+split+")");
 			} catch (SQLException e) {
 				//stat.executeUpdate("UPDATE "+type+"_roh Set ID="+id+" where Zeitpunkt='" + zeitpunkt+"'");
 				return;
