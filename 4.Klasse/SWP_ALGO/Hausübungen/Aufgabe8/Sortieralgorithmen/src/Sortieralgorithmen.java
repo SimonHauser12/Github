@@ -16,27 +16,39 @@ public class Sortieralgorithmen {
 	private static ArrayList<Integer> vergleichO_IS=new ArrayList<Integer>();
 	private static ArrayList<Integer> vertauschO_QS=new ArrayList<Integer>();
 	private static ArrayList<Integer> vergleichO_QS=new ArrayList<Integer>();
-	private static int[] vergleichO=new int[5];
-	private static int[] vertauschO=new int[5];
+	private static ArrayList<Integer> vertauschO_MS=new ArrayList<Integer>();
+	private static ArrayList<Integer> vergleichO_MS=new ArrayList<Integer>();
+	private static int[] vergleichO=new int[6];
+	private static int[] vertauschO=new int[6];
 	static int[] zahlen=new int[anzahl];
 	static long bubbleSort_zeit;
 	static long unstableSelectionSort_zeit;
 	static long stableSelectionSort_zeit;
 	static long insertionSort_zeit;
 	static long quickSort_zeit;
+	static long mergeSort_zeit;
 	
 	public static void main(String[] args) {
 		for (int i = 0; i < counterA; i++) {
 			befüllen();
+			
 			bubbleSort(zufallszahlen);
 			gleichsetzen();
+			
 			unstableSelectionSort(zufallszahlen);
 			gleichsetzen();
+			
 			stableSelectionSort(zufallszahlen);
 			gleichsetzen();
+			
 			insertionSort(zufallszahlen);
 			gleichsetzen();
+			
 			quickSort_Main(zufallszahlen);
+			gleichsetzen();
+			
+			mergeSort_Main(zufallszahlen);
+			gleichsetzen();
 		}
 		werte();
 		ausgabe();
@@ -53,6 +65,8 @@ public class Sortieralgorithmen {
 		Collections.sort(vergleichO_IS);
 		Collections.sort(vergleichO_QS);
 		Collections.sort(vergleichO_QS);
+		Collections.sort(vergleichO_MS);
+		Collections.sort(vergleichO_MS);
 		for(int i=0; i<vertauschO_BS.size(); i++) {
 			vertauschO[0]=vertauschO[0]+vertauschO_BS.get(i);
 		}
@@ -82,6 +96,12 @@ public class Sortieralgorithmen {
 		}
 		for(int i=0; i<vergleichO_QS.size(); i++) {
 			vergleichO[4]=vergleichO[4]+vergleichO_QS.get(i);
+		}
+		for(int i=0; i<vertauschO_MS.size(); i++) {
+			vertauschO[5]=vertauschO[5]+vertauschO_MS.get(i);
+		}
+		for(int i=0; i<vergleichO_MS.size(); i++) {
+			vergleichO[5]=vergleichO[5]+vergleichO_MS.get(i);
 		}
 	}
 	
@@ -114,6 +134,11 @@ public class Sortieralgorithmen {
 		System.out.println("Vergleichoperationen: "+vergleichO[4]/counterA+" | Median: "+vergleichO_QS.get((counterA/2)-1));
 		System.out.println("Vertauschoperationen: "+vertauschO[4]/counterA+" | Median: "+vertauschO_QS.get((counterA/2)-1));
 		System.out.println("Zeit: "+quickSort_zeit/counterA);
+		System.out.println();
+		System.out.println("MergeSort: ");
+		System.out.println("Vergleichoperationen: "+vergleichO[5]/counterA+" | Median: "+vergleichO_MS.get((counterA/2)-1));
+		System.out.println("Vertauschoperationen: "+vertauschO[5]/counterA+" | Median: "+vertauschO_MS.get((counterA/2)-1));
+		System.out.println("Zeit: "+mergeSort_zeit/counterA);
 	}
 	
 	public static void gleichsetzen() {
@@ -268,4 +293,79 @@ public class Sortieralgorithmen {
 			quickSort(zahlen, pi+1, high);
 		}
 	}
+	
+	public static void merge(int arr[], int l, int m, int r)
+    {
+        int n1 = m - l + 1;
+        int n2 = r - m;
+ 
+        int L[] = new int[n1];
+        int R[] = new int[n2];
+ 
+        for (int i = 0; i < n1; ++i)
+            L[i] = arr[l + i];
+        for (int j = 0; j < n2; ++j)
+            R[j] = arr[m + 1 + j];
+ 
+        int i = 0, j = 0;
+ 
+        int k = l;
+        counter_verg++;
+        while (i < n1 && j < n2) {
+        	counter_verg++;
+            if (L[i] <= R[j]) {
+            	counter_vert++;
+                arr[k] = L[i];
+                i++;
+            }
+            else {
+                arr[k] = R[j];
+                counter_vert++;
+                j++;
+            }
+            k++;
+        }
+ 
+        counter_verg++;
+        while (i < n1) {
+        	counter_verg++;
+        	counter_vert++;
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+ 
+        counter_verg++;
+        while (j < n2) {
+        	counter_verg++;
+        	counter_vert++;
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+    }
+ 
+    public static void sort(int arr[], int l, int r)
+    {
+        if (l < r) {
+            int m =l+ (r-l)/2;
+ 
+            sort(arr, l, m);
+            sort(arr, m + 1, r);
+ 
+            merge(arr, l, m, r);
+        }
+    }
+ 
+    public static void mergeSort_Main(int[] arr)
+    {
+    	counter_verg=0;
+		counter_vert=0;
+		long start=System.nanoTime();
+		sort(arr, 0, arr.length - 1);
+		mergeSort_zeit=mergeSort_zeit+System.nanoTime()-start;
+		vertauschO_MS.add(counter_vert);
+		vergleichO_MS.add(counter_verg);
+        
+    }
 }
