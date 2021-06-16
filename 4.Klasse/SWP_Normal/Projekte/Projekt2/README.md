@@ -10,10 +10,10 @@
 ***
 Progammiersprache: Java
 
-Das Programm ermittelt nach Angabe der Firmenkürzel in einer extrenen Textdatei die Closewerte (Tagesendwerte) von den angegebenen Aktienkursen über eine im Programm 
-angegebene Zeitspanne (z.B. die letzten 1000 Einträge).
-Nach der Ermittlung der "rohen" Closewerte werden diese mittels Splitcorrection korrigiert und die korrigierten Werte werden in einer MySQL-Datenbank abgespeichert. 
-Aus dieser Datenbank werden anschließend alle Werte ausgelesen und in einem Liniendiagramm mittels JAVA-FX in der angegebenen Zeitspanne dargestellt.
+Das Programm ermittelt nach Angabe der Firmenkürzel in einer extrenen Textdatei die Closewerte (Tagesendwerte) von den angegebenen Aktien. Der Zeitraum, in welchem 
+die Werte ermittelt werden sollten, wird in der Console eingegeben. Je nach Belieben kann auch eine Splitcorrection durchgeführt werden. Alle Daten werden dann
+in einer MySQL-Datenbank abgespeichert. Aus dieser Datenbank werden anschließend alle Werte ausgelesen und ein Aktienkauf mit einem beliebigen Kapital simuliert.
+Am Ende kann man sich durch JAVA-FX entweder eine AreaChart, welcher die Entwicklung der Aktien darstellt, oder einen LineChart, der den Verlauf des eingesetzten Kapitals aufzeigt, erstellen lassen.
 
 ### Installationen
 ***
@@ -29,24 +29,20 @@ Damit das Projekt ausführbar ist, müssen folgende jar-Dateien eingebunden werd
 ### Ausführung
 ***
 Bevor das Programm ausgeführt werden kann, muss in der externen Textdatei mindestens ein Firmenkürzel angegeben werden, damit dessen Aktienkurs ermittelt werden kann.
-Anschließend werden aus der API alle Close- sowie Splitwerte in der angegebenen Menge ausgelesen und in einer Datenbank abgespeichert. 
-Es wurde in diesem Projekt eine MySQL-Datenbank verwendet. Die Datenbank wurde zur Gänze im Projekt erstellt. 
-Damit das Programm allerdings funktioniert und Werte in die Datenbank geschrieben werden können, müssen 
-    
+Außerdem müssen in den ersten vier Zeilen der Textdatei die folgenden Daten der Datenbank angegeben werden:
+
 * **localhost, Datenbankname, Benutzer und Passwort**
 
-geändert werden.
-Daraufhin werden diese Werte wieder aus der Datenbank ausgelesen und mittels Splitcorrection (wenn der Splitwert größer als 1 ist, müssen alle nachherigen Werte durch diesen Wert dividiert werden)
-werden die Aktiensplits korrigiert. Die korrigierten Werte werden dann wieder in einer Datenbanktabelle abgespeichert. Aus diesen korrigierten Werten wird danach der 200er-Durchschnitt 
-berechnet (die letzten 200 Werte addieren und durch 200 dividieren, für alle Werte) und ebenfalls in einer Datenbank abgespeichert.
-Zu guter Letzt werden die korrigierten Werte sowie die 200er-Werte ausgelesen und durch Java-FX mittels Liniendiagramm dargestellt.
-Dargestellt werden also der 200er Durchschnitt mittels schwarzer Linie und die Closewerte, wobei der Hintergrund der Closewerte variable anhand des 200er-Durchschnitts gesteuert wird.
-    
-* Wenn der Closewert größer als der 200er-Wert ist, dann ist der Hintergrund grün gefärbt (Aktie bringt Gewinn)
-* Wenn der Closewert kleiner als der 200er-Wert ist, dann ist der Hintergrund rot gefärbt (Aktie bringt Verlust)
+Anschließend werden, wenn man die Datenbank aktualisieren will, aus der API alle Closewerte, wenn benötigt mit Splitcorrection, im angegebenen Zeitraum ausgelesen und in einer Datenbank abgespeichert. 
+Es wurde in diesem Projekt eine MySQL-Datenbank verwendet. Die Datenbank wurde zur Gänze im Projekt erstellt. 
+
+Aus den in der Datenbank liegenden Werten wird nun jeweils der 200er-Durchschnitt berechnet (die letzten 200 Werte addieren und durch 200 dividieren, für alle Werte) und ebenfalls in einer Datenbank abgespeichert.
+Anschließend wird ein Aktienkauf mit drei unterschiedlichen Strategien simuliert. Die Werte werden wieder in der Datenbank abgespeichert.
+Zu guter Letzt wird der Verlauf des eingesetzten Kapitals im angegebenen Zeitraum mittels Java-FX in einem Liniendiagramm dargestellt.
+Jenachdem welche Strategie gewählt wurde, wird entweder jeder Graph einzelnt oder alle drei Graphen zusammen dargestellt.
 
 Ganz am Ende werden die erzeugen Charts als .PNG auf dem PC abgespeichert.   
 
 ### Screenshot
 ***
-[JavaFX-Ausgabe](https://github.com/SimonHauser12/Github/blob/master/4.Klasse/SWP_Normal/Projekte/Projekt2/Aktienkurs/TSLA_2021-03-25.png?raw=true)
+[JavaFX-Ausgabe (alle Strategien)](https://github.com/SimonHauser12/Github/blob/master/4.Klasse/SWP_Normal/Projekte/Projekt2/Aktienkurs/Aktien_2021-06-16_(4).png?raw=true)

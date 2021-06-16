@@ -35,7 +35,6 @@ public class TestMain{
 		String zeitende = zeit();
 		double kapital = kapital();
 		config();
-		
 		for (int i = 0; i < ticker.size(); i++) {
 			typ = ticker.get(i);
 			Strategien a = new Strategien(typ, anzahlTage, host, database, user, passwort);
@@ -45,10 +44,11 @@ public class TestMain{
 			idende=a.zeitpruefen(zeitende);
 			strategie(wahl, wertewahl, a, kapital);
 			a.schliessen();
-			System.out.println(typ);
 		}
 		System.out.println("fertig");
-		select_Strategie_mehrfach(wahl, kapital);
+		Strategien a = new Strategien(ticker.get(0), anzahlTage, host, database, user, passwort);
+		a.select_Strategie_mehrfach(wahl, kapital, ticker);
+		
 		Class stra = null;
 		System.out.println("Diagramm Strategien(0) oder Aktie(1)");
 		try {
@@ -67,70 +67,6 @@ public class TestMain{
 		}
 		Application.launch(stra, args);
 		r.close();
-	}
-	
-	public static void select_Strategie_mehrfach(int wahl, double kapital){
-		double kapital0 = kapital;
-		double kapital1;
-		Connection con;
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://"+host+"/"+database+"?user="+user+"&password="+passwort+"&serverTimezone=UTC");
-			System.out.println();
-			System.out.println("Rohwerte:");
-			if (wahl==1 || wahl==4) {
-				kapital1=0;
-				System.out.println("200er-Strategie ");
-				System.out.println("Startkapital: "+kapital0);
-				for (int i = 0; i < ticker.size(); i++) {
-					Statement stat = con.createStatement();
-					ResultSet reSe = stat.executeQuery("select Name, Kapital from Aktie_" + ticker.get(i)
-							+ "_200erStrategie_Rohwerte order by id desc limit 1");
-					while (reSe.next()) {
-						kapital1 = kapital1+Double.parseDouble(reSe.getString("Kapital"));
-					} 
-				} 
-				System.out.println("Endkapital: " + kapital1);
-				System.out.println("prozentuelle Veränderung: " + (((kapital1 / kapital0) - 1) * 100) + "%");
-				System.out.println();
-			}
-			if (wahl==2 || wahl==4) {
-				kapital1=0;
-				System.out.print("200er-3%-Strategie ");
-				System.out.println("Startkapital: "+kapital0);
-				for (int i = 0; i < ticker.size(); i++) {
-					Statement stat2 = con.createStatement();
-					ResultSet reSe2 = stat2.executeQuery("select Name, Kapital from Aktie_" + ticker.get(i)
-							+ "_200er_3_Strategie_Rohwerte order by id desc limit 1");
-					while (reSe2.next()) {
-						kapital1 = kapital1+Double.parseDouble(reSe2.getString("Kapital"));
-					} 
-				} 
-				System.out.println("Endkapital: " + kapital1);
-				System.out.println("prozentuelle Veränderung: " + (((kapital1 / kapital0) - 1) * 100) + "%");
-				System.out.println();
-			}
-			if (wahl==3 || wahl==4) {
-				kapital1=0;
-				System.out.print("BuyAndHold-Strategie ");
-			 	System.out.println("Startkapital: "+kapital0);
-				for (int i = 0; i < ticker.size(); i++) {
-					Statement stat3 = con.createStatement();
-					ResultSet reSe3 = stat3.executeQuery("select Name, Kapital from Aktie_" + ticker.get(i)
-							+ "_buyandhold_Strategie_Rohwerte order by id desc limit 1");
-					while (reSe3.next()) {
-						kapital1 = kapital1+Double.parseDouble(reSe3.getString("Kapital"));
-					} 
-				} 
-				System.out.println("Endkapital: " + kapital1);
-				System.out.println("prozentuelle Veränderung: " + (((kapital1 / kapital0) - 1) * 100) + "%");
-				System.out.println();
-			}
-			System.out.println();
-		}catch(Exception ex){
-			ex.printStackTrace();
-			System.out.println("Verbinden fehlgeschlagen");
-		}
 	}
 	
 	public static void werte(int wertewahl, Strategien a) throws Exception {
