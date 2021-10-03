@@ -27,15 +27,22 @@ def selectionSort(list):
       
         list[i], list[min_idx] = list[min_idx], list[i]
     return list
-
+    
 if __name__ == "__main__":
     unsortedList = [2,5,8,6,4,8,9,10]
 
-    bubbleList = bubbleSort(unsortedList)
-    insertionList = insertionSort(unsortedList)
-    selectionList = selectionSort(unsortedList)
-
     print(unsortedList)
+
+    bubbleList = bubbleSort(unsortedList)
     print(bubbleList)
+    unsortedList = [2,5,8,6,4,8,9,10]
+    insertionList = insertionSort(unsortedList)
     print(insertionList)
+    unsortedList = [2,5,8,6,4,8,9,10]
+    selectionList = selectionSort(unsortedList)
     print(selectionList)
+
+    
+    
+    
+    
