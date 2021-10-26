@@ -13,7 +13,8 @@ def start():
         print("Bitte wählen (SC=Schere, ST=Stein, P=Papier, E=Echse, SP=Spock)")
         ein=input()
         einC=random.randint(0, 4)
-        loop=eingabekontrolle(ein, einC)
+        loop, einP=eingabekontrolle(ein, einC)
+        spiel(einC, einP)
 
 def spiel(einC, einP):
     if(einC==0 and einP==2):
@@ -96,37 +97,27 @@ def spiel(einC, einP):
 def eingabekontrolle(eing, einC):
     if(eing!="SC" and eing!="ST" and eing!="P" and eing!="E" and eing!="SP"):
         print("Falsche Eingabe: NUR SC, ST, P, E und SP erlaubt!")
-        return True
+        return True, 5
     if(eing=="SC"):
         einP=Werte.SC
-        print(einP)
-        print(einC)
-        spiel(einC, einP)
-        return False
+        #spiel(einC, einP)
+        return False, einP
     if(eing=="ST"):
         einP=Werte.ST
-        print(einP)
-        print(einC)
-        spiel(einC, einP)
-        return False
+        #spiel(einC, einP)
+        return False, einP
     if(eing=="P"):
         einP=Werte.P
-        print(einP)
-        print(einC)
-        spiel(einC, einP)
-        return False
+        #spiel(einC, einP)
+        return False, einP
     if(eing=="E"):
         einP=Werte.E
-        print(einP)
-        print(einC)
-        spiel(einC, einP)
-        return False
+        #spiel(einC, einP)
+        return False, einP
     if(eing=="SP"):
         einP=Werte.SP
-        print(einP)
-        print(einC)
-        spiel(einC, einP)
-        return False
+        #spiel(einC, einP)
+        return False, einP
     
 class Werte:
     SC, ST, P, E, SP = range(5)
