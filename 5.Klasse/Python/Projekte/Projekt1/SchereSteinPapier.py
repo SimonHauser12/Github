@@ -6,119 +6,38 @@ def willkommen():
     ein1=input()
     return ein1
 
-def start():
-    print("Spiel beginnt")
-    loop=True
-    while(loop):
+def waehlen(p):
+    while(True):
         print("Bitte wählen (SC=Schere, ST=Stein, P=Papier, E=Echse, SP=Spock)")
-        ein=input()
-        einC=random.randint(0, 4)
-        loop, einP=eingabekontrolle(ein, einC)
-        spiel(einC, einP)
+        p1 = input()
+        if(p1 in p):
+            return p1
+        else:
+            print("Wrong value")
 
-def spiel(einC, einP):
-    if(einC==0 and einP==2):
-        print("Computer: Schere / Spieler: Papier")
-        print("Computer hat gewonnen")
-    if(einC==2 and einP==0):
-        print("Computer: Papier / Spieler: Schere")
-        print("Spieler hat gewonnen")
-    if(einC==2 and einP==1):
-        print("Computer: Papier / Spieler: Stein")
-        print("Computer hat gewonnen")
-    if(einC==1 and einP==2):
-        print("Computer: Stein / Spieler: Papier")
-        print("Spieler hat gewonnen")
-    if(einC==1 and einP==3):
-        print("Computer: Stein / Spieler: Echse")
-        print("Computer hat gewonnen")
-    if(einC==3 and einP==1):
-        print("Computer: Echse / Spieler: Stein")
-        print("Spieler hat gewonnen")
-    if(einC==3 and einP==4):
-        print("Computer: Echse / Spieler: Spock")
-        print("Computer hat gewonnen")
-    if(einC==4 and einP==3):
-        print("Computer: Spock / Spieler: Echse")
-        print("Spieler hat gewonnen")
-    if(einC==4 and einP==0):
-        print("Computer: Spock / Spieler: Schere")
-        print("Computer hat gewonnen")
-    if(einC==0 and einP==4):
-        print("Computer: Schere / Spieler: Spock")
-        print("Spieler hat gewonnen")
-    if(einC==0 and einP==3):
-        print("Computer: Schere / Spieler: Echse")
-        print("Computer hat gewonnen")
-    if(einC==3 and einP==0):
-        print("Computer: Echse / Spieler: Schere")
-        print("Spieler hat gewonnen")
-    if(einC==3 and einP==2):
-        print("Computer: Echse / Spieler: Papier")
-        print("Computer hat gewonnen")
-    if(einC==2 and einP==3):
-        print("Computer: Papier / Spieler: Echse")
-        print("Spieler hat gewonnen")
-    if(einC==2 and einP==4):
-        print("Computer: Papier / Spieler: Spock")
-        print("Computer hat gewonnen")
-    if(einC==4 and einP==2):
-        print("Computer: Spock / Spieler: Papier")
-        print("Spieler hat gewonnen")
-    if(einC==4 and einP==1):
-        print("Computer: Spock / Spieler: Stein")
-        print("Computer hat gewonnen")
-    if(einC==1 and einP==4):
-        print("Computer: Stein / Spieler: Spock")
-        print("Spieler hat gewonnen")
-    if(einC==1 and einP==0):
-        print("Computer: Stein / Spieler: Schere")
-        print("Computer hat gewonnen")
-    if(einC==0 and einP==1):
-        print("Computer: Schere / Spieler: Stein")
-        print("Spieler hat gewonnen")
-    if(einC==0 and einP==0):
-        print("Unentschieden(Schere)")
-        print("kein Sieger")
-    if(einC==1 and einP==1):
-        print("Unentschieden(Stein)")
-        print("kein Sieger")
-    if(einC==2 and einP==2):
-        print("Unentschieden(Papier)")
-        print("kein Sieger")
-    if(einC==3 and einP==3):
-        print("Unentschieden(Echse)")
-        print("kein Sieger")
-    if(einC==4 and einP==4):
-        print("Unentschieden(Spock)")
-        print("kein Sieger")
-    
+def vergleichen(p, c, wert, ergebnis):
+    print("Spieler:" + p)
+    print("Computer:" + c)
+    a = wert[p] - wert[c]
+    return ergebnis[a % 5]
 
-def eingabekontrolle(eing, einC):
-    if(eing!="SC" and eing!="ST" and eing!="P" and eing!="E" and eing!="SP"):
-        print("Falsche Eingabe: NUR SC, ST, P, E und SP erlaubt!")
-        return True, 5
-    if(eing=="SC"):
-        einP=Werte.SC
-        #spiel(einC, einP)
-        return False, einP
-    if(eing=="ST"):
-        einP=Werte.ST
-        #spiel(einC, einP)
-        return False, einP
-    if(eing=="P"):
-        einP=Werte.P
-        #spiel(einC, einP)
-        return False, einP
-    if(eing=="E"):
-        einP=Werte.E
-        #spiel(einC, einP)
-        return False, einP
-    if(eing=="SP"):
-        einP=Werte.SP
-        #spiel(einC, einP)
-        return False, einP
-    
-class Werte:
-    SC, ST, P, E, SP = range(5)
 
+def start(psieg, csieg, zaehler):
+    print("Spiel beginnt")
+    l = ["SC", "ST", "P", "E", "SP"]
+    e = ["Unentschieden", "Spieler hat gewonnen", "Spieler hat gewonnen", "Computer hat gewonnen", "Computer hat gewonnen"]
+    wert = {"SC": 4, "ST": 0, "P": 2, "E": 3, "SP": 1}
+    p = waehlen(l)
+    c = random.choice(l)
+    ergebnis = vergleichen(p, c, wert, e)
+    print(ergebnis + "\n")
+    if(ergebnis == "Spieler hat gewonnen"):
+        psieg = psieg + 1
+    elif(ergebnis == "Computer hat gewonnen"):
+        csieg = csieg + 1
+    zaehler = zaehler + 1
+    print("Anzahl der Spiele: " + str(zaehler))
+    print("Anzahl Siege Spieler: " + str(psieg))
+    print("Anzahl Siege Computer " + str(csieg))
+    l=[psieg, csieg, zaehler]
+    return l

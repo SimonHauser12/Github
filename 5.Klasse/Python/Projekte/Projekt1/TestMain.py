@@ -19,8 +19,11 @@ def erneut():
             return False
         if(ein=="j"):
             return True
-        
-if __name__ == "__main__":
+
+def Main():
+    psieg=0
+    csieg=0
+    zaehler=0
     loop=True
     while(loop):
         ein1=SSP.willkommen()
@@ -28,8 +31,15 @@ if __name__ == "__main__":
     if(ein1=="j"):
         l=True
         while(l):
-            SSP.start()
+            a = SSP.start(psieg,csieg, zaehler)
+            print(str(a[0])+","+str(a[1])+","+str(a[2]))
+            psieg=a[0]
+            csieg=a[1]
+            zaehler=a[2]
             l=erneut()
     if(ein1=="n"):
         print("Spiel wird beendet!")
     print("Spiel beendet!")
+
+if __name__ == "__main__":
+    Main()
