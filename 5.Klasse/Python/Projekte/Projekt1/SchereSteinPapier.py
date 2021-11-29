@@ -1,7 +1,6 @@
 import random
 
 def willkommen():
-    print("Willkommen bei Schere-Stein-Papier-Echse-Spock")
     print("Möchtest du ein Spiel starten (j, n)")
     ein1=input()
     return ein1

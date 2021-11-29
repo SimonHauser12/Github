@@ -23,6 +23,16 @@ def erneut():
         if(ein=="j"):
             return True
 
+def menu(connection):
+    r=True
+    while(r):
+        print("Spieldaten anzeigen? (j, n)")
+        ein=input()
+        r=kontrolle(ein)
+    if(ein=="j"):
+        db.select(connection)
+
+
 def Main():
     connection=db.connectionOpen()
     psieg=0
@@ -35,6 +45,8 @@ def Main():
     zaehlerSP=0
     loop=True
     while(loop):
+        print("Willkommen bei Schere-Stein-Papier-Echse-Spock")
+        menu(connection)
         ein1=SSP.willkommen()
         loop=kontrolle(ein1)
     if(ein1=="j"):
@@ -53,6 +65,7 @@ def Main():
     if(ein1=="n"):
         print("Spiel wird beendet!")
     db.insert(connection, zaehlerSC, zaehlerST, zaehlerP, zaehlerE, zaehlerSP, psieg, csieg, zaehler)
+    menu(connection)
     db.connectionClose(connection)
     print("Spiel beendet!")
 

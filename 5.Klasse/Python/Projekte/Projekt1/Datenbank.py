@@ -8,17 +8,30 @@ def connectionClose(connection):
     connection.disconnect()
 
 def insert(connection, anzahlSC, anzahlST, anzahlPA, anzahlE, anzahlSPO, anzahlP, anzahlC, anzahlSP):
-    curser = connection.cursor()
-    curser.execute("insert into anzahl values(null, "+str(anzahlSC)+", "+str(anzahlST)+", "+str(anzahlPA)+", "+str(anzahlE)+", "+str(anzahlSPO)+", "+str(anzahlP)+", "+str(anzahlC)+", "+str(anzahlSP)+")")
-    curser.close()
-    connection.commit()
+    if(anzahlSP>0):
+        curser = connection.cursor()
+        curser.execute("insert into anzahl values(null, "+str(anzahlSC)+", "+str(anzahlST)+", "+str(anzahlPA)+", "+str(anzahlE)+", "+str(anzahlSPO)+", "+str(anzahlP)+", "+str(anzahlC)+", "+str(anzahlSP)+")")
+        curser.close()
+        connection.commit()
+    
 
 def select(connection):
     curser = connection.cursor()
-    curser.execute("select * from anzahl")
-    result = cursor.fetchall()
+    curser.execute("select sum(anzahlSchere), sum(anzahlStein), sum(anzahlPapier), sum(anzahlEchse), sum(anzahlSpock), sum(siegePlayer), sum(siegeCOM), sum(anzahlSpiel) from anzahl")
+    result = curser.fetchall()
     curser.close()
-    l=[]
+    ausgabe(result)     
+    
+def ausgabe(result):
     for d in result:
-        l.add[d[0], d[1], d[2], d[3]]
-    return l
+        print("Anzahl der gewählten Symbole:")
+        print("Schere "+str(int(d[0])))
+        print("Stein "+str(int(d[1])))
+        print("Papier "+str(int(d[2])))
+        print("Echse "+str(int(d[3])))
+        print("Spock "+str(int(d[4]))+"\n")
+        print("Anzahl Siege:")
+        print("Spieler "+str(int(d[5])))
+        print("Computer "+str(int(d[6]))+"\n")
+        print("Anzahl der durchgeführten Spiele:")
+        print("Spielanzahl "+str(int(d[7]))+"\n")
