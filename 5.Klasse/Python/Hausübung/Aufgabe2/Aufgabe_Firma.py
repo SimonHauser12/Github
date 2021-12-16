@@ -47,11 +47,12 @@ def hoechsteMitarbeiterstaerke(thoeni):
     counter = 0
     counterM = 0
     abt = None
+
     for a in range(len(thoeni.abteilung)):
         if thoeni.abteilung[a].gruppenleiter is not None:
                 counter+=1
-        for b in range(len(thoeni.abteilung[a].mitarbeiter)):
-                counter+=1   
+        listcounter = [counter for b in range(len(thoeni.abteilung[a].mitarbeiter))]
+        counter+=len(listcounter)
         if counterM < counter:
             counterM = counter
             abt = thoeni.abteilung[a]
