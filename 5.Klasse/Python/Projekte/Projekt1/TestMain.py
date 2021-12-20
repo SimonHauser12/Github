@@ -1,7 +1,7 @@
 import mysql.connector
 import SchereSteinPapier as SSP
 import Datenbank as db
-
+import requests
 
 def kontrolle(ein):
     if(ein=="j"):
@@ -35,14 +35,16 @@ def menu(connection):
 
 def sendRequest(username, voteScissors, voteRock, votePaper, voteSpock, voteLizard, apiIP="http://127.0.0.1:5000"):
     reqUrl=apiIP + "/v1/updateRecord"
-    repUrl+= "?username="+str(username)+"&voteScissors="+str(voteScissors)
-    repUrl+= "&voteRock="+str(voteRock)+"&votePaper="+str(votePaper)
-    repUrl+= "&voteSpock"+str(voteSpock)+"&voteLizard="+str(voteLizard)
+    reqUrl+= "?username="+str(username)+"&voteScissors="+str(voteScissors)
+    reqUrl+= "&voteRock="+str(voteRock)+"&votePaper="+str(votePaper)
+    reqUrl+= "&voteSpock"+str(voteSpock)+"&voteLizard="+str(voteLizard)
     responseCode=0
     try:
-        response=requests.post(repUrl, None)
+        response=requests.post(reqUrl, None)
         responseCode=response.status_code
+        print("Done")
     except:
+        print("Error")
         return 0
     return responseCode
 
@@ -56,8 +58,7 @@ def api_aufruf(connection):
         sp=int(d[4])
 
         print("API-Request gestartet")
-        code=sendRequest("shauser2", sc, st, p, sp, e)
-        print("Done")
+        code=sendRequest("shauser2", 1, 2, 3, 4, 5)
         print("code="+str(code)+"\n")
 
 def Main():
