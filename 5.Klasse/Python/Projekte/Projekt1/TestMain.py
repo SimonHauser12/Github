@@ -58,7 +58,7 @@ def api_aufruf(connection):
         sp=int(d[4])
 
         print("API-Request gestartet")
-        code=sendRequest("shauser2", 1, 2, 3, 4, 5)
+        code=sendRequest("shauser2", sc, st, p, sp, e)
         print("code="+str(code)+"\n")
 
 def Main():
