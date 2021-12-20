@@ -20,7 +20,7 @@ def select(connection):
     curser.execute("select sum(anzahlSchere), sum(anzahlStein), sum(anzahlPapier), sum(anzahlEchse), sum(anzahlSpock), sum(siegePlayer), sum(siegeCOM), sum(anzahlSpiel) from anzahl")
     result = curser.fetchall()
     curser.close()
-    ausgabe(result)     
+    return result     
     
 def ausgabe(result):
     for d in result:

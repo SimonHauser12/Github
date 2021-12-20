@@ -30,8 +30,35 @@ def menu(connection):
         ein=input()
         r=kontrolle(ein)
     if(ein=="j"):
-        db.select(connection)
+        result=db.select(connection)
+        db.ausgabe(result)
 
+def sendRequest(username, voteScissors, voteRock, votePaper, voteSpock, voteLizard, apiIP="http://127.0.0.1:5000"):
+    reqUrl=apiIP + "/v1/updateRecord"
+    repUrl+= "?username="+str(username)+"&voteScissors="+str(voteScissors)
+    repUrl+= "&voteRock="+str(voteRock)+"&votePaper="+str(votePaper)
+    repUrl+= "&voteSpock"+str(voteSpock)+"&voteLizard="+str(voteLizard)
+    responseCode=0
+    try:
+        response=requests.post(repUrl, None)
+        responseCode=response.status_code
+    except:
+        return 0
+    return responseCode
+
+def api_aufruf(connection):
+    daten=db.select(connection)
+    for d in daten:
+        sc=int(d[0])
+        st=int(d[1])
+        p=int(d[2])
+        e=int(d[3])
+        sp=int(d[4])
+
+        print("API-Request gestartet")
+        code=sendRequest("shauser2", sc, st, p, sp, e)
+        print("Done")
+        print("code="+str(code)+"\n")
 
 def Main():
     connection=db.connectionOpen()
@@ -44,11 +71,13 @@ def Main():
     zaehlerE=0
     zaehlerSP=0
     loop=True
+
     while(loop):
         print("Willkommen bei Schere-Stein-Papier-Echse-Spock")
         menu(connection)
         ein1=SSP.willkommen()
         loop=kontrolle(ein1)
+
     if(ein1=="j"):
         l=True
         while(l):
@@ -62,10 +91,13 @@ def Main():
             csieg=a[6]
             zaehler=a[7]
             l=erneut()
+
     if(ein1=="n"):
         print("Spiel wird beendet!")
+
     db.insert(connection, zaehlerSC, zaehlerST, zaehlerP, zaehlerE, zaehlerSP, psieg, csieg, zaehler)
     menu(connection)
+    api_aufruf(connection)
     db.connectionClose(connection)
     print("Spiel beendet!")
 
