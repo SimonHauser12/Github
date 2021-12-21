@@ -1,0 +1,246 @@
+2021-12-20 13:01:42,201 INFO root MainThread : flask is starting
+2021-12-20 13:01:42,248 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-20 17:19:56,839 INFO root MainThread : flask is starting
+2021-12-20 17:19:56,948 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-20 17:25:20,487 INFO root MainThread : flask is starting
+2021-12-20 17:25:20,505 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-20 17:32:20,938 INFO root Thread-2 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-20 17:32:20,941 INFO werkzeug Thread-2 : 127.0.0.1 - - [20/Dec/2021 17:32:20] "[31m[1mPOST /v1/updateRecord?username=shauser2&voteScissors=10&voteRock=7&votePaper=9&voteSpock5&voteLizard=11 HTTP/1.1[0m" 400 -
+2021-12-20 17:34:17,135 INFO root Thread-3 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-20 17:34:17,137 INFO werkzeug Thread-3 : 127.0.0.1 - - [20/Dec/2021 17:34:17] "[31m[1mPOST /v1/updateRecord?username=shauser2&voteScissors=10&voteRock=7&votePaper=9&voteSpock5&voteLizard=11 HTTP/1.1[0m" 400 -
+2021-12-20 17:36:36,816 INFO root Thread-4 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-20 17:36:36,817 INFO werkzeug Thread-4 : 127.0.0.1 - - [20/Dec/2021 17:36:36] "[31m[1mPOST /v1/updateRecord?username=shauser2&voteScissors=1&voteRock=2&votePaper=3&voteSpock4&voteLizard=5 HTTP/1.1[0m" 400 -
+2021-12-20 17:37:35,831 INFO root Thread-5 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-20 17:37:35,832 INFO werkzeug Thread-5 : 127.0.0.1 - - [20/Dec/2021 17:37:35] "[31m[1mPOST /v1/updateRecord?username=shauser&voteScissors=1&voteRock=2&votePaper=3&voteSpock4&voteLizard=5 HTTP/1.1[0m" 400 -
+2021-12-20 17:45:10,915 INFO root MainThread : flask is starting
+2021-12-20 17:45:10,931 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-20 17:45:20,068 INFO root Thread-2 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-20 17:45:20,070 INFO werkzeug Thread-2 : 127.0.0.1 - - [20/Dec/2021 17:45:20] "[31m[1mPOST /v1/updateRecord?username=shauser&voteScissors=1&voteRock=2&votePaper=3&voteSpock4&voteLizard=5 HTTP/1.1[0m" 400 -
+2021-12-20 17:50:01,942 INFO root Thread-3 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-20 17:50:01,943 INFO werkzeug Thread-3 : 127.0.0.1 - - [20/Dec/2021 17:50:01] "[31m[1mPOST /v1/updateRecord?username=hauser&voteScissors=1&voteRock=2&votePaper=3&voteSpock4&voteLizard=5 HTTP/1.1[0m" 400 -
+2021-12-20 17:51:18,784 INFO werkzeug Thread-4 : 127.0.0.1 - - [20/Dec/2021 17:51:18] "[31m[1mGET /v1/updateRecord HTTP/1.1[0m" 405 -
+2021-12-20 17:51:19,067 INFO werkzeug Thread-5 : 127.0.0.1 - - [20/Dec/2021 17:51:19] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2021-12-20 17:51:26,250 INFO root Thread-7 : request from 127.0.0.1 (/)
+2021-12-20 17:51:27,465 INFO werkzeug Thread-7 : 127.0.0.1 - - [20/Dec/2021 17:51:27] "GET / HTTP/1.1" 200 -
+2021-12-20 17:52:03,587 INFO werkzeug Thread-6 : 127.0.0.1 - - [20/Dec/2021 17:52:03] "GET /v1/getLog HTTP/1.1" 200 -
+2021-12-20 17:53:56,846 INFO root Thread-10 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-20 17:53:56,875 INFO root Thread-10 : fetching totals from database
+2021-12-20 17:53:59,975 INFO werkzeug Thread-10 : 127.0.0.1 - - [20/Dec/2021 17:53:59] "[33mGET /v1/getGraph HTTP/1.1[0m" 404 -
+2021-12-20 17:59:43,533 INFO werkzeug Thread-12 : 127.0.0.1 - - [20/Dec/2021 17:59:43] "[31m[1mGET /v1/updateRecord?username=s&voteScissors=1&voteRocke=2&votePaper=3&voteSpock=4&voteLizard=5 HTTP/1.1[0m" 405 -
+2021-12-20 17:59:51,607 INFO werkzeug Thread-11 : 127.0.0.1 - - [20/Dec/2021 17:59:51] "GET /v1/getLog HTTP/1.1" 200 -
+2021-12-20 18:03:25,412 INFO root Thread-14 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-20 18:03:25,414 INFO werkzeug Thread-14 : 127.0.0.1 - - [20/Dec/2021 18:03:25] "[31m[1mPOST /v1/updateRecord?username=shauser2&voteScissors=1&voteRock=2&votePaper=3&voteSpock4&voteLizard=5 HTTP/1.1[0m" 400 -
+2021-12-20 18:03:34,249 INFO werkzeug Thread-16 : 127.0.0.1 - - [20/Dec/2021 18:03:34] "GET /v1/getLog HTTP/1.1" 200 -
+2021-12-21 10:41:55,901 INFO root MainThread : flask is starting
+2021-12-21 10:41:56,034 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-12-21 10:46:00,840 INFO root Thread-3 : request from 127.0.0.1 (/)
+2021-12-21 10:46:01,621 INFO werkzeug Thread-3 : 127.0.0.1 - - [21/Dec/2021 10:46:01] "[36mGET / HTTP/1.1[0m" 304 -
+2021-12-21 10:46:03,641 INFO werkzeug Thread-2 : 127.0.0.1 - - [21/Dec/2021 10:46:03] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2021-12-21 10:47:30,081 INFO root Thread-4 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 10:47:30,138 INFO root Thread-4 : updated db for username=shauser2
+2021-12-21 10:47:30,139 INFO werkzeug Thread-4 : 127.0.0.1 - - [21/Dec/2021 10:47:30] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 10:48:03,400 INFO werkzeug Thread-6 : 127.0.0.1 - - [21/Dec/2021 10:48:03] "GET /v1/getLog HTTP/1.1" 200 -
+2021-12-21 10:48:52,495 INFO root Thread-5 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 10:48:52,554 INFO root Thread-5 : fetching totals from database
+2021-12-21 10:48:59,696 INFO werkzeug Thread-5 : 127.0.0.1 - - [21/Dec/2021 10:48:59] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 10:53:54,687 INFO root Thread-8 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 10:53:54,983 INFO root Thread-8 : updated db for username=shauser2
+2021-12-21 10:53:54,984 INFO werkzeug Thread-8 : 127.0.0.1 - - [21/Dec/2021 10:53:54] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 10:53:55,008 INFO werkzeug Thread-9 : 127.0.0.1 - - [21/Dec/2021 10:53:55] "[31m[1mPOST /v1/getGraph HTTP/1.1[0m" 405 -
+2021-12-21 10:55:03,507 INFO werkzeug Thread-10 : 127.0.0.1 - - [21/Dec/2021 10:55:03] "GET /v1/getLog HTTP/1.1" 200 -
+2021-12-21 10:55:28,413 INFO root Thread-12 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 10:55:29,698 INFO root Thread-12 : updated db for username=shauser2
+2021-12-21 10:55:29,699 INFO werkzeug Thread-12 : 127.0.0.1 - - [21/Dec/2021 10:55:29] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 10:55:29,716 INFO root Thread-13 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 10:55:29,717 INFO root Thread-13 : fetching totals from database
+2021-12-21 10:55:30,445 INFO werkzeug Thread-13 : 127.0.0.1 - - [21/Dec/2021 10:55:30] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:02:40,560 INFO root Thread-14 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:02:40,860 INFO root Thread-14 : updated db for username=shauser2
+2021-12-21 11:02:40,861 INFO werkzeug Thread-14 : 127.0.0.1 - - [21/Dec/2021 11:02:40] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 11:02:40,909 INFO root Thread-15 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:02:40,912 INFO root Thread-15 : fetching totals from database
+2021-12-21 11:02:41,271 INFO werkzeug Thread-15 : 127.0.0.1 - - [21/Dec/2021 11:02:41] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:03:31,486 INFO root Thread-16 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:03:33,548 INFO root Thread-16 : updated db for username=shauser2
+2021-12-21 11:03:33,551 INFO werkzeug Thread-16 : 127.0.0.1 - - [21/Dec/2021 11:03:33] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 11:03:33,564 INFO root Thread-17 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:03:33,574 INFO root Thread-17 : fetching totals from database
+2021-12-21 11:03:33,920 INFO werkzeug Thread-17 : 127.0.0.1 - - [21/Dec/2021 11:03:33] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:04:15,737 INFO root Thread-18 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:04:16,239 INFO root Thread-18 : updated db for username=shauser2
+2021-12-21 11:04:16,240 INFO werkzeug Thread-18 : 127.0.0.1 - - [21/Dec/2021 11:04:16] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 11:04:16,250 INFO root Thread-19 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:04:16,288 INFO root Thread-19 : fetching totals from database
+2021-12-21 11:04:16,651 INFO werkzeug Thread-19 : 127.0.0.1 - - [21/Dec/2021 11:04:16] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:05:12,413 INFO root Thread-20 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:05:12,584 INFO root Thread-20 : updated db for username=shauser2
+2021-12-21 11:05:12,585 INFO werkzeug Thread-20 : 127.0.0.1 - - [21/Dec/2021 11:05:12] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 11:05:12,602 INFO root Thread-21 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:05:12,618 INFO root Thread-21 : fetching totals from database
+2021-12-21 11:05:12,908 INFO werkzeug Thread-21 : 127.0.0.1 - - [21/Dec/2021 11:05:12] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:05:36,181 INFO root Thread-22 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:05:36,257 INFO root Thread-22 : updated db for username=shauser2
+2021-12-21 11:05:36,257 INFO werkzeug Thread-22 : 127.0.0.1 - - [21/Dec/2021 11:05:36] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 11:05:36,275 INFO root Thread-23 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:05:36,313 INFO root Thread-23 : fetching totals from database
+2021-12-21 11:05:36,614 INFO werkzeug Thread-23 : 127.0.0.1 - - [21/Dec/2021 11:05:36] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:06:01,848 INFO root Thread-25 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:06:01,860 INFO root Thread-25 : fetching totals from database
+2021-12-21 11:06:02,205 INFO werkzeug Thread-25 : 127.0.0.1 - - [21/Dec/2021 11:06:02] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:07:20,022 INFO root Thread-26 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:07:20,294 INFO root Thread-26 : updated db for username=shauser2
+2021-12-21 11:07:20,295 INFO werkzeug Thread-26 : 127.0.0.1 - - [21/Dec/2021 11:07:20] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 11:07:20,340 INFO root Thread-27 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:07:20,344 INFO root Thread-27 : fetching totals from database
+2021-12-21 11:07:20,634 INFO werkzeug Thread-27 : 127.0.0.1 - - [21/Dec/2021 11:07:20] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:07:28,711 INFO werkzeug Thread-29 : 127.0.0.1 - - [21/Dec/2021 11:07:28] "GET /v1/getLog HTTP/1.1" 200 -
+2021-12-21 11:10:13,954 INFO root Thread-30 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:10:14,201 INFO root Thread-30 : updated db for username=shauser2
+2021-12-21 11:10:14,202 INFO werkzeug Thread-30 : 127.0.0.1 - - [21/Dec/2021 11:10:14] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 11:10:14,249 INFO root Thread-31 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:10:14,316 INFO root Thread-31 : fetching totals from database
+2021-12-21 11:10:14,612 INFO werkzeug Thread-31 : 127.0.0.1 - - [21/Dec/2021 11:10:14] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:10:45,899 INFO root Thread-32 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:10:46,394 INFO root Thread-32 : updated db for username=shauser2
+2021-12-21 11:10:46,395 INFO werkzeug Thread-32 : 127.0.0.1 - - [21/Dec/2021 11:10:46] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 11:10:46,689 INFO root Thread-33 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:10:47,107 INFO root Thread-33 : fetching totals from database
+2021-12-21 11:10:47,861 INFO werkzeug Thread-33 : 127.0.0.1 - - [21/Dec/2021 11:10:47] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:12:59,596 INFO root Thread-34 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:12:59,735 INFO root Thread-34 : updated db for username=shauser2
+2021-12-21 11:12:59,736 INFO werkzeug Thread-34 : 127.0.0.1 - - [21/Dec/2021 11:12:59] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 11:12:59,760 INFO root Thread-35 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:12:59,767 INFO root Thread-35 : fetching totals from database
+2021-12-21 11:13:00,125 INFO werkzeug Thread-35 : 127.0.0.1 - - [21/Dec/2021 11:13:00] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:13:54,249 INFO root Thread-36 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:13:54,663 INFO root Thread-36 : updated db for username=shauser2
+2021-12-21 11:13:54,664 INFO werkzeug Thread-36 : 127.0.0.1 - - [21/Dec/2021 11:13:54] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 11:13:54,676 INFO root Thread-37 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:13:54,699 INFO root Thread-37 : fetching totals from database
+2021-12-21 11:13:55,047 INFO werkzeug Thread-37 : 127.0.0.1 - - [21/Dec/2021 11:13:55] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:26:34,745 INFO root Thread-38 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:26:34,810 INFO root Thread-38 : updated db for username=shauser2
+2021-12-21 11:26:34,811 INFO werkzeug Thread-38 : 127.0.0.1 - - [21/Dec/2021 11:26:34] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 11:26:34,819 INFO root Thread-39 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:26:34,823 INFO root Thread-39 : fetching totals from database
+2021-12-21 11:26:35,100 INFO werkzeug Thread-39 : 127.0.0.1 - - [21/Dec/2021 11:26:35] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:26:51,889 INFO root Thread-40 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:26:52,041 INFO root Thread-40 : updated db for username=shauser2
+2021-12-21 11:26:52,042 INFO werkzeug Thread-40 : 127.0.0.1 - - [21/Dec/2021 11:26:52] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 11:26:52,066 INFO root Thread-41 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:26:52,073 INFO root Thread-41 : fetching totals from database
+2021-12-21 11:26:52,325 INFO werkzeug Thread-41 : 127.0.0.1 - - [21/Dec/2021 11:26:52] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:30:22,857 INFO root Thread-42 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:30:23,022 INFO root Thread-42 : updated db for username=shauser2
+2021-12-21 11:30:23,023 INFO werkzeug Thread-42 : 127.0.0.1 - - [21/Dec/2021 11:30:23] "POST /v1/updateRecord?username=shauser2&voteScissors=11&voteRock=7&votePaper=10&voteSpock=5&voteLizard=11 HTTP/1.1" 200 -
+2021-12-21 11:30:23,041 INFO root Thread-43 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:30:23,064 INFO root Thread-43 : fetching totals from database
+2021-12-21 11:30:23,307 INFO werkzeug Thread-43 : 127.0.0.1 - - [21/Dec/2021 11:30:23] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:31:26,097 INFO root Thread-44 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:31:26,160 INFO root Thread-44 : updated db for username=shauser2
+2021-12-21 11:31:26,161 INFO werkzeug Thread-44 : 127.0.0.1 - - [21/Dec/2021 11:31:26] "POST /v1/updateRecord?username=shauser2&voteScissors=13&voteRock=8&votePaper=10&voteSpock=5&voteLizard=12 HTTP/1.1" 200 -
+2021-12-21 11:31:26,169 INFO root Thread-45 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:31:26,184 INFO root Thread-45 : fetching totals from database
+2021-12-21 11:31:26,422 INFO werkzeug Thread-45 : 127.0.0.1 - - [21/Dec/2021 11:31:26] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:33:58,792 INFO root Thread-46 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:33:58,862 INFO root Thread-46 : updated db for username=shauser2
+2021-12-21 11:33:58,864 INFO werkzeug Thread-46 : 127.0.0.1 - - [21/Dec/2021 11:33:58] "POST /v1/updateRecord?username=shauser2&voteScissors=14&voteRock=10&votePaper=10&voteSpock=5&voteLizard=13 HTTP/1.1" 200 -
+2021-12-21 11:33:58,872 INFO root Thread-47 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:33:58,874 INFO root Thread-47 : fetching totals from database
+2021-12-21 11:33:59,166 INFO werkzeug Thread-47 : 127.0.0.1 - - [21/Dec/2021 11:33:59] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:36:14,820 INFO root Thread-48 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:36:14,986 INFO root Thread-48 : updated db for username=shauser2
+2021-12-21 11:36:14,987 INFO werkzeug Thread-48 : 127.0.0.1 - - [21/Dec/2021 11:36:14] "POST /v1/updateRecord?username=shauser2&voteScissors=14&voteRock=10&votePaper=10&voteSpock=5&voteLizard=13 HTTP/1.1" 200 -
+2021-12-21 11:36:14,997 INFO root Thread-49 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:36:15,001 INFO root Thread-49 : fetching totals from database
+2021-12-21 11:36:15,259 INFO werkzeug Thread-49 : 127.0.0.1 - - [21/Dec/2021 11:36:15] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:36:41,579 INFO root Thread-50 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:36:41,733 INFO root Thread-50 : updated db for username=shauser2
+2021-12-21 11:36:41,734 INFO werkzeug Thread-50 : 127.0.0.1 - - [21/Dec/2021 11:36:41] "POST /v1/updateRecord?username=shauser2&voteScissors=14&voteRock=10&votePaper=10&voteSpock=5&voteLizard=13 HTTP/1.1" 200 -
+2021-12-21 11:36:41,775 INFO root Thread-51 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:36:41,780 INFO root Thread-51 : fetching totals from database
+2021-12-21 11:36:42,032 INFO werkzeug Thread-51 : 127.0.0.1 - - [21/Dec/2021 11:36:42] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:39:30,127 INFO root Thread-52 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:39:30,181 INFO root Thread-52 : updated db for username=shauser2
+2021-12-21 11:39:30,182 INFO werkzeug Thread-52 : 127.0.0.1 - - [21/Dec/2021 11:39:30] "POST /v1/updateRecord?username=shauser2&voteScissors=15&voteRock=10&votePaper=10&voteSpock=7&voteLizard=14 HTTP/1.1" 200 -
+2021-12-21 11:39:30,203 INFO root Thread-53 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:39:30,207 INFO root Thread-53 : fetching totals from database
+2021-12-21 11:39:30,477 INFO werkzeug Thread-53 : 127.0.0.1 - - [21/Dec/2021 11:39:30] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:40:38,505 INFO root Thread-54 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:40:38,650 INFO root Thread-54 : updated db for username=shauser2
+2021-12-21 11:40:38,651 INFO werkzeug Thread-54 : 127.0.0.1 - - [21/Dec/2021 11:40:38] "POST /v1/updateRecord?username=shauser2&voteScissors=15&voteRock=10&votePaper=10&voteSpock=7&voteLizard=14 HTTP/1.1" 200 -
+2021-12-21 11:40:38,669 INFO root Thread-55 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:40:38,672 INFO root Thread-55 : fetching totals from database
+2021-12-21 11:40:39,129 INFO werkzeug Thread-55 : 127.0.0.1 - - [21/Dec/2021 11:40:39] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:41:23,603 INFO root Thread-56 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:41:23,978 INFO root Thread-56 : updated db for username=shauser2
+2021-12-21 11:41:23,979 INFO werkzeug Thread-56 : 127.0.0.1 - - [21/Dec/2021 11:41:23] "POST /v1/updateRecord?username=shauser2&voteScissors=15&voteRock=11&votePaper=10&voteSpock=7&voteLizard=15 HTTP/1.1" 200 -
+2021-12-21 11:41:23,987 INFO root Thread-57 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:41:23,990 INFO root Thread-57 : fetching totals from database
+2021-12-21 11:41:24,268 INFO werkzeug Thread-57 : 127.0.0.1 - - [21/Dec/2021 11:41:24] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:43:07,288 INFO root Thread-58 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:43:07,357 INFO root Thread-58 : updated db for username=shauser2
+2021-12-21 11:43:07,358 INFO werkzeug Thread-58 : 127.0.0.1 - - [21/Dec/2021 11:43:07] "POST /v1/updateRecord?username=shauser2&voteScissors=15&voteRock=12&votePaper=11&voteSpock=7&voteLizard=15 HTTP/1.1" 200 -
+2021-12-21 11:43:07,367 INFO root Thread-59 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:43:07,374 INFO root Thread-59 : fetching totals from database
+2021-12-21 11:43:07,656 INFO werkzeug Thread-59 : 127.0.0.1 - - [21/Dec/2021 11:43:07] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:43:35,422 INFO root Thread-60 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:43:35,732 INFO root Thread-60 : updated db for username=shauser2
+2021-12-21 11:43:35,733 INFO werkzeug Thread-60 : 127.0.0.1 - - [21/Dec/2021 11:43:35] "POST /v1/updateRecord?username=shauser2&voteScissors=15&voteRock=13&votePaper=11&voteSpock=7&voteLizard=16 HTTP/1.1" 200 -
+2021-12-21 11:43:35,743 INFO root Thread-61 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:43:35,746 INFO root Thread-61 : fetching totals from database
+2021-12-21 11:43:35,995 INFO werkzeug Thread-61 : 127.0.0.1 - - [21/Dec/2021 11:43:35] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:45:30,702 INFO root Thread-62 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:45:30,771 INFO root Thread-62 : updated db for username=shauser2
+2021-12-21 11:45:30,772 INFO werkzeug Thread-62 : 127.0.0.1 - - [21/Dec/2021 11:45:30] "POST /v1/updateRecord?username=shauser2&voteScissors=15&voteRock=13&votePaper=11&voteSpock=7&voteLizard=16 HTTP/1.1" 200 -
+2021-12-21 11:45:30,781 INFO root Thread-63 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:45:30,784 INFO root Thread-63 : fetching totals from database
+2021-12-21 11:45:31,023 INFO werkzeug Thread-63 : 127.0.0.1 - - [21/Dec/2021 11:45:31] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:45:59,368 INFO root Thread-64 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:45:59,447 INFO root Thread-64 : updated db for username=shauser2
+2021-12-21 11:45:59,448 INFO werkzeug Thread-64 : 127.0.0.1 - - [21/Dec/2021 11:45:59] "POST /v1/updateRecord?username=shauser2&voteScissors=15&voteRock=14&votePaper=12&voteSpock=7&voteLizard=16 HTTP/1.1" 200 -
+2021-12-21 11:45:59,498 INFO root Thread-65 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:45:59,508 INFO root Thread-65 : fetching totals from database
+2021-12-21 11:45:59,968 INFO werkzeug Thread-65 : 127.0.0.1 - - [21/Dec/2021 11:45:59] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:46:40,241 INFO root Thread-66 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:46:40,506 INFO root Thread-66 : updated db for username=shauser2
+2021-12-21 11:46:40,507 INFO werkzeug Thread-66 : 127.0.0.1 - - [21/Dec/2021 11:46:40] "POST /v1/updateRecord?username=shauser2&voteScissors=15&voteRock=14&votePaper=12&voteSpock=7&voteLizard=16 HTTP/1.1" 200 -
+2021-12-21 11:46:40,519 INFO root Thread-67 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:46:40,523 INFO root Thread-67 : fetching totals from database
+2021-12-21 11:46:40,889 INFO werkzeug Thread-67 : 127.0.0.1 - - [21/Dec/2021 11:46:40] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:47:01,249 INFO root Thread-68 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:47:01,401 INFO root Thread-68 : updated db for username=shauser2
+2021-12-21 11:47:01,402 INFO werkzeug Thread-68 : 127.0.0.1 - - [21/Dec/2021 11:47:01] "POST /v1/updateRecord?username=shauser2&voteScissors=15&voteRock=14&votePaper=13&voteSpock=7&voteLizard=17 HTTP/1.1" 200 -
+2021-12-21 11:47:01,431 INFO root Thread-69 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:47:01,436 INFO root Thread-69 : fetching totals from database
+2021-12-21 11:47:01,786 INFO werkzeug Thread-69 : 127.0.0.1 - - [21/Dec/2021 11:47:01] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:51:33,827 INFO root Thread-70 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:51:34,396 INFO root Thread-70 : updated db for username=shauser2
+2021-12-21 11:51:34,398 INFO werkzeug Thread-70 : 127.0.0.1 - - [21/Dec/2021 11:51:34] "POST /v1/updateRecord?username=shauser2&voteScissors=15&voteRock=14&votePaper=13&voteSpock=7&voteLizard=17 HTTP/1.1" 200 -
+2021-12-21 11:51:34,418 INFO root Thread-71 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:51:34,427 INFO root Thread-71 : fetching totals from database
+2021-12-21 11:51:34,829 INFO werkzeug Thread-71 : 127.0.0.1 - - [21/Dec/2021 11:51:34] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:57:55,716 INFO root Thread-72 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:57:55,997 INFO root Thread-72 : updated db for username=shauser2
+2021-12-21 11:57:55,998 INFO werkzeug Thread-72 : 127.0.0.1 - - [21/Dec/2021 11:57:55] "POST /v1/updateRecord?username=shauser2&voteScissors=15&voteRock=14&votePaper=13&voteSpock=7&voteLizard=17 HTTP/1.1" 200 -
+2021-12-21 11:57:56,051 INFO root Thread-73 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:57:56,089 INFO root Thread-73 : fetching totals from database
+2021-12-21 11:57:56,498 INFO werkzeug Thread-73 : 127.0.0.1 - - [21/Dec/2021 11:57:56] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:59:13,737 INFO root Thread-74 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:59:13,848 INFO root Thread-74 : updated db for username=shauser2
+2021-12-21 11:59:13,849 INFO werkzeug Thread-74 : 127.0.0.1 - - [21/Dec/2021 11:59:13] "POST /v1/updateRecord?username=shauser2&voteScissors=15&voteRock=14&votePaper=13&voteSpock=7&voteLizard=17 HTTP/1.1" 200 -
+2021-12-21 11:59:13,938 INFO root Thread-75 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:59:13,954 INFO root Thread-75 : fetching totals from database
+2021-12-21 11:59:14,265 INFO werkzeug Thread-75 : 127.0.0.1 - - [21/Dec/2021 11:59:14] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 11:59:46,897 INFO root Thread-76 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 11:59:47,065 INFO root Thread-76 : updated db for username=shauser2
+2021-12-21 11:59:47,066 INFO werkzeug Thread-76 : 127.0.0.1 - - [21/Dec/2021 11:59:47] "POST /v1/updateRecord?username=shauser2&voteScissors=15&voteRock=14&votePaper=13&voteSpock=7&voteLizard=17 HTTP/1.1" 200 -
+2021-12-21 11:59:47,081 INFO root Thread-77 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 11:59:47,093 INFO root Thread-77 : fetching totals from database
+2021-12-21 11:59:47,367 INFO werkzeug Thread-77 : 127.0.0.1 - - [21/Dec/2021 11:59:47] "GET /v1/getGraph HTTP/1.1" 200 -
+2021-12-21 12:00:10,462 INFO root Thread-78 : request from 127.0.0.1 (/v1/updateRecord)
+2021-12-21 12:00:11,451 INFO root Thread-78 : updated db for username=shauser2
+2021-12-21 12:00:11,452 INFO werkzeug Thread-78 : 127.0.0.1 - - [21/Dec/2021 12:00:11] "POST /v1/updateRecord?username=shauser2&voteScissors=15&voteRock=14&votePaper=13&voteSpock=7&voteLizard=17 HTTP/1.1" 200 -
+2021-12-21 12:00:11,467 INFO root Thread-79 : request from 127.0.0.1 (/v1/getGraph)
+2021-12-21 12:00:11,475 INFO root Thread-79 : fetching totals from database
+2021-12-21 12:00:11,805 INFO werkzeug Thread-79 : 127.0.0.1 - - [21/Dec/2021 12:00:11] "GET /v1/getGraph HTTP/1.1" 200 -

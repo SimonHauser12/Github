@@ -1,0 +1,55 @@
+It works! Now use the API!
+
+########################################################################################################################
+Resource:
+POST: <ip>/v1/updateRecord
+
+With the following parameters:
+
+"username" - Your unique username, ideally containing of only letters and numbers. The username should stay the same!
+             All previous data will be overwritten for this user.
+
+"voteScissors" - Positive integer with how often scissors won
+"voteRock" -  Positive integer with how often rock won
+"votePaper" - Positive integer with how often paper won
+"voteSpock" - Positive integer with how often spock won
+"voteLizard" - Positive integer with how often lizard won
+
+Response:
+200 (OK): Everything worked
+401 (Bad Request): Something is wrong with the parameters
+500 (Internal Server Error): Something went wrong on the server side
+                            - that should not happen, please open a issue on gitlab
+
+
+########################################################################################################################
+
+Resource:
+GET <ip>/v1/getLog
+Returns text log file
+
+With no parameters!
+
+Response:
+200 (OK): Everything worked
+500 (Internal Server Error): Something went wrong on the server side
+                            - that should not happen, please open a issue on gitlab
+
+Content of the response:
+<plain text file>
+
+########################################################################################################################
+
+Resource:
+GET <ip>/v1/getGraph
+Returns graph image
+
+With no parameters!
+
+Response:
+200 (OK): Everything worked
+500 (Internal Server Error): Something went wrong on the server side
+                            - that should not happen, please open a issue on gitlab
+
+Content of the response:
+<image file as png>
