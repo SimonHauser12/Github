@@ -45,4 +45,4 @@ angezeigt werden oder nicht.
 
 ### Screenshot
 ***
-[Kreisdiagramm (Häufigkeit gewählter Elemente)](https://github.com/SimonHauser12/Github/blob/master/4.Klasse/SWP_Normal/Projekte/Projekt2/Aktienkurs/chart.png?raw=true)
+[Kreisdiagramm (Häufigkeit gewählter Elemente)](https://github.com/SimonHauser12/Github/tree/master/5.Klasse/Python/Projekte/Projekt1/SchereSteinPapier/chart.png?raw=true)
