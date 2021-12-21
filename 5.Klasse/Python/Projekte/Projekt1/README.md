@@ -1,4 +1,4 @@
-# Aktienkurs - API
+# Schere-Stein-Papier-Echse-Spock
 ***
 ### Inhaltsangabe
 1. [Beschreibung des Projekts](#beschreibungdesprojekts)
