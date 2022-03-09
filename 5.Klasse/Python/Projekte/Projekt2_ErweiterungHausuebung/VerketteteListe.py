@@ -165,7 +165,7 @@ class VerketteListe:
             print("Element "+str(obj)+" ist nicht in der Liste enthalten")
             print("Kein Delete konnte durchgeführt werden")       
 
-    def findObjPlace(self, obj):                    #suchen der Stelle eines bestimmten Objekts
+    def findbyObj(self, obj):                    #suchen der Stelle eines bestimmten Objekts
         c=self.findElementPlace(obj)
         le=c[0]
         s=c[1]
@@ -214,7 +214,7 @@ class VerketteListe:
             elif(le.nextEl==None):
                 print("Es ist kein Element nach der Stelle "+str(pl)+" vorhanden, kein Delete durchführbar")   
 
-    def findObj(self, pl):                          #finden des Objekts an einer bestimmten Stelle
+    def findbyPlace(self, pl):                          #finden des Objekts an einer bestimmten Stelle
         if(pl>=ElementListe.counter or pl<0):
             print("Es wurde eine falsche Zahl gewählt")
             print("Bitte zwischen 0-"+str(ElementListe.counter-1)+" wählen")
@@ -233,55 +233,19 @@ class VerketteListe:
                 print("Vorheriges Element: "+str(le.prevEl.obj))
                 print("Nachfolgendes Element nicht vorhanden (letztes Element)")
 
-    def select(self):                           #ausgabe der verketteten Liste
+    def printErgebnis(self):                           #ausgabe der verketteten Liste
         print("Normal")
         le=self.startEl
         while(le!=None):
             print("| " + str(le.obj) + " |")
             le=le.nextEl
     
-    def selectReverse(self):                    #ausgabe der ungedrehten verketteten Liste
+    def printErgebnisReverse(self):                    #ausgabe der ungedrehten verketteten Liste
         print("Rückwerts")
         rle=self.endEl
         while(rle!=None):
             print("| " + str(rle.obj) + " |")
             rle=rle.prevEl
-
-    """def sortAsc(self):                          #Aufsteigend Sortieren
-        j = -1
-        key = self.findElement(0)
-        for i in range(1, int(ElementListe.counterListe())):
-            key = self.findElement(i).__str__()
-            j = i-1
-            while(j >= 0 and self.findElement(j).__str__() > key):
-                l=self.findElement(j).__str__()
-                self.deletePlace(j, "after")
-                self.insertPlace(j, l, "after")
-                j -= 1
-            if(j>=0):
-                self.deletePlace(j, "after")
-                self.insertPlace(j, key, "after")
-            elif(j<0):
-                self.deletePlace(1, "before")
-                self.insertPlace(1, key, "before")
-                
-    def sortDesc(self):                                 #Absteigend Sortieren
-        j = -1
-        key = self.findElement(0)
-        for i in range(1, int(ElementListe.counterListe())):
-            key = self.findElement(i).__str__()
-            j = i-1
-            while(j >= 0 and self.findElement(j).__str__() < key):
-                l=self.findElement(j).__str__()
-                self.deletePlace(j, "after")
-                self.insertPlace(j, l, "after")
-                j -= 1
-            if(j>=0):
-                self.deletePlace(j, "after")
-                self.insertPlace(j, key, "after")
-            elif(j<0):
-                self.deletePlace(1, "before")
-                self.insertPlace(1, key, "before")"""
     
     def sortAsc(self):                          #Aufsteigend Sortieren
         if(self.startEl==None):
